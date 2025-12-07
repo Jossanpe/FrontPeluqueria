@@ -11,7 +11,7 @@ import { Router,RouterLink,RouterModule } from '@angular/router';
 import { UsuariosService } from '../../core/services/usuariosService/usuarios.service';
 import { RegistroUsuarioRequest, Usuario } from '../../models/usuario';
 import { HttpErrorResponse } from '@angular/common/http';
-import { BotonComponent } from "../../shared/boton/boton.component";
+import { BotonComponent } from '../../shared/boton/boton.component';
 
 @Component({
   selector: 'app-registro',
@@ -22,7 +22,15 @@ import { BotonComponent } from "../../shared/boton/boton.component";
 })
 export class RegistroComponent {
   /* GETERS para obtener el valor de los campos del formulario, asi podemoso hacer las validaciones y el payload */
-  get nombre() {
+
+
+  carga = false; 
+  serverMessage: string | null = null;
+  success = false;
+  formularioRegistroUsuario: FormGroup;
+
+
+    get nombre() {
     return this.formularioRegistroUsuario.get('nombre');
     }
     
@@ -52,13 +60,6 @@ export class RegistroComponent {
       return this.formularioRegistroUsuario.get('password');
     }
 
-  
-
-
-  carga = false; 
-  serverMessage: string | null = null;
-  success = false;
-  formularioRegistroUsuario: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -115,6 +116,7 @@ export class RegistroComponent {
     };
 
     this.carga = true;
+   
     this.usuariosService.registro(payload).subscribe({
       next: (res: any) => {
         this.carga = false;

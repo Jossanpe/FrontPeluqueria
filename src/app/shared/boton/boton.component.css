@@ -5,6 +5,11 @@ button{
     margin:10px;
     border-radius:5px;
     border-color: white;
+
+    &.registro{
+        width: 95%;
+        
+    }
     
 }
 button:hover{

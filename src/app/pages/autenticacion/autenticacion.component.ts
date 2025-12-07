@@ -24,6 +24,7 @@ export class AutenticacionComponent {
   carga=false;//loading
   error='';
   formularioAutenticacion:FormGroup;
+  
    get email() { return this.formularioAutenticacion.get('email'); }
   get password() { return this.formularioAutenticacion.get('password'); }
 

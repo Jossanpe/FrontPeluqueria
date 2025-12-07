@@ -174,7 +174,7 @@
       <label class="form-label" for="fotoperfil">Foto de perfil</label>
       <div class=" d-flex justify-content">
 
-        <input type="file" id="fotoperfil" class="form-control input-img" formControlName="fotoperfil" (change)="fotoSeleccionada($event)">
+        <input type="file" id="fotoperfil" class="input-img" formControlName="fotoperfil" (change)="fotoSeleccionada($event)">
         <img *ngIf="preview" [src]="preview" class="rounded-circle mt-3 fotoperfil">
       </div>
       
@@ -184,6 +184,7 @@
     
     <!-- Submit -->
     <app-boton
+    variant="registro"
     type="submit"
     [disabled]="carga || formularioRegistroUsuario.invalid"
     >

@@ -5,7 +5,12 @@
       [attr.type]="type"
       [disabled]="disabled"
       [ngClass]="class"
-><ng-content></ng-content></button>
+      [ngClass]="variant"
+      type="button"
+
+><ng-content></ng-content>
+<span *ngIf="disabled" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+</button>
 
 
 <!-- <button>INICIO SESION</button>

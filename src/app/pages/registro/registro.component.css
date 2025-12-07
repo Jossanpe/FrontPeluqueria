@@ -40,9 +40,7 @@ color:white;
 .input-img{
   width:80px;
   height:20px;
-  font-size:10px;
-
-  
+  font-size:10px; 
 }
 input.form-control, select {
   padding: 0.3rem;
