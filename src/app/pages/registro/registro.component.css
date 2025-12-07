@@ -1,0 +1,11 @@
+:host {
+  display: block;
+}
+
+.card {
+  border-radius: 12px;
+}
+
+.form-control.is-invalid {
+  box-shadow: none;
+}

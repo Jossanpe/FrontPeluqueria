@@ -1,0 +1,57 @@
+.header {
+  padding:0 5% 0 5%;
+  background-color: black;
+  color: white;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+  letter-spacing: 0.2px;
+
+  .container {
+    max-width: 100%;
+  }
+
+  .contacto {
+    /* enlaces en blanco semi-opaco por defecto */
+    .enlace-contacto {
+      color: rgba(255, 255, 255, 0.95);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.95rem;
+      transition: color 0.15s ease, transform 0.08s ease;
+    }
+
+    .enlace-contacto:hover,
+    .enlace-contacto:focus {
+      color: #ffffff;
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    /* moviles los enlaces ocupan su propia línea y tienen separación */
+    @media (max-width: 767.98px) {
+      .enlace-contacto {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    /* en desktop, pequeños espaciados laterales */
+    @media (min-width: 768px) {
+      .enlace-contacto {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}
+
+
+
+/* Opcional: un separador más sutil para pantallas grandes */
+@media (min-width: 768px) {
+  .header .contacto .enlace-contacto + .enlace-contacto::before {
+    content: "";
+  }
+}

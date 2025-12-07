@@ -1,0 +1,59 @@
+<div class="login-container d-flex align-items-center justify-content-center">
+  <div class="login-box p-3">
+
+      <img src="logo.png" alt="logo" width="80px" class="mx-auto d-block mb-3" />
+      <!-- mx-auto: margenes horizontales automáticos; d-block: convierte la imagen esn display:block  -->
+    <h2 class="text-center mb-3 titulo-greatvibes">AUTENTICACION</h2>
+
+    <form [formGroup]="formularioAutenticacion" (ngSubmit)="submit()">
+
+      <!-- CAMPO EMAIL -->
+      <div class="mb-3">
+        <input
+          formControlName="email"
+          type="email"
+          class="form-control"
+          placeholder="Email"
+          [class.is-invalid]="email?.touched && email?.invalid" 
+        /><!-- pladeholder: activar o desactivar una clase css según el estado del control del formulario. El ? indica que acceda a la propiedad solo si el objeto existe. 
+        Es decir, el input o contenido solo sera invalido y dara error si el usuario ya toco el campo, y se ha comprobado que la validacion de contenido no es correcta -->
+
+        <div class="invalid-feedback" *ngIf="email?.touched && email?.invalid">
+          Introduce un email válido
+        </div>
+      </div>
+
+
+      <!-- CAMPO PASSWORD -->
+      <div class="mb-3">
+        <input
+          formControlName="password"
+          type="password"
+          class="form-control"
+          placeholder="Password"
+          [class.is-invalid]="password?.touched && password?.invalid"
+        />
+        <!--  LOS CORCHETES [ ] indican property binding(enlace de propiedad), significa que angular evaluara la expresion de la derecha.
+          En este caso indica que active o desactive la is-invalid segun la condicion-->
+        <div class="invalid-feedback" *ngIf="password?.touched && password?.invalid">
+          La contraseña es obligatoria
+        </div>
+        <a href="/autenticacion">Recordar clave de acceso</a>
+      </div>
+      <!-- BOTÓN -->
+      <app-boton  class="mx-auto d-block" type="submit" [disabled]="carga">
+        <span *ngIf="!carga">ENTRAR</span>
+        <span *ngIf="carga">Enviando...</span>
+      </app-boton>
+      <app-boton class="mx-auto d-block" routerLink="/registro">
+        REGISTRARME
+      </app-boton>
+      
+      <!-- ERROR -->
+      <div *ngIf="error" class="alert alert-danger mt-3 py-2 text-center">
+        {{ error }}
+      </div>
+
+    </form>
+  </div>
+</div>

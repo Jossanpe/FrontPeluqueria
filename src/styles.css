@@ -1,1 +1,65 @@
 /* You can add global styles to this file, and also import other style files */
+.titulo-montserrat {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+/*  TIPOGRAFIA PARA ESLOGAN PAGE-HOME*/
+.titulo-playfair {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+
+  
+  :root {
+  --header-height: 100px;
+  --nav-height: 40px;
+}
+  
+  @media (max-width: 766px) {
+      :root {
+  --header-height: 160px;
+  --nav-height: 40px;
+}
+    }
+  @media (max-width: 757px) {
+      :root {
+  --header-height: 160px;
+  --nav-height: 40px;
+}
+    }
+
+
+  @media (max-width: 426px) {
+       :root {
+  --header-height: 180px;
+  --nav-height: 45px;
+}
+    }
+  @media (max-width: 384px) {
+     :root {
+  --header-height: 180px;
+  --nav-height: 45px;
+}
+
+    }
+      @media (max-width: 360px) {
+        :root {
+  --header-height: 180px;
+  --nav-height: 45px;
+}
+     @media (max-width: 248px) {
+        :root {
+  --header-height: 205px;
+  --nav-height: 45px;
+} 
+}
+      }

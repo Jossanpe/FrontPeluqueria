@@ -1,0 +1,12 @@
+
+  
+  .nav-fijo {
+  position: fixed;
+  top: var(--header-height); /* se pega justo debajo del header */
+  width: 100%;
+  z-index: 1030; /* por encima del contenido, por debajo de modales */
+}
+.navbar{
+    background-color:cadetblue;
+}
+

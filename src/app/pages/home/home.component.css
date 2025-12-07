@@ -1,0 +1,51 @@
+
+
+.efecto-cargar {
+ 
+  animation: aparicion 2s linear forwards;
+    opacity:0;
+}
+
+@keyframes aparicion {
+    
+  to {
+    opacity: 1;
+  }
+}
+
+
+.color-fondo {
+  background: linear-gradient(400deg, white, rgba(227, 218, 201));
+}
+
+.main-con-nav {
+  padding-top: calc(var(--header-height) + var(--nav-height));
+}
+
+main{
+ padding-top:100px;   
+}
+
+  @media (max-width: 750px) {
+      main {
+      padding-top:160px;
+      }
+    }
+
+  @media (max-width: 426px) {
+      main {
+      padding-top:160px;
+      }
+    }
+  @media (max-width: 384px) {
+      main {
+      padding-top:185px;
+      }
+
+    }
+      @media (max-width: 360px) {
+      main {
+      padding-top:185px;
+      }
+    }
+

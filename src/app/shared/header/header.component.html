@@ -1,0 +1,40 @@
+<!-- HARE DOS HEADER, UNO PARA EL HOME Y EL OTRO CON EL NAVEGADOR -->
+
+<header class="header py-3 fixed-top">
+  <div
+    class="container d-flex flex-column flex-md-row justify-content-between align-items-center"
+  >
+    <!-- Nombre / Logo -->
+    <a routerLink="/home" >
+      <img src="logo.png" alt="logo" width="60px" class="logo text-center text-md-start mb-2 mb-md-0" />
+    </a>
+
+    <!-- Información de contacto (enlaces) -->
+    <div
+      class="contacto d-flex flex-column flex-md-row align-items-center text-center text-md-end gap-2"
+    >
+      <!-- Teléfono: enlace telefono. Con PROPERTY BINDING. Configuracion dinamica del atributo href del enlace.-->
+      <a
+        class="enlace-contacto contacto"
+        [attr.href]="'tel:' + phone"
+        aria-label="Llamar a la peluquería"
+      >
+      <!--  Añade el logo del telefono-->
+        <i class="bi bi-telephone me-1" aria-hidden="true"></i>
+        <span class="d-inline-block d-md-none">Tel:</span>
+        <span class="fw-medium">{{ phone }}</span>
+      </a>
+
+      <!-- Separador visual (solo en desktop) -->
+      <span class="d-none d-md-inline mx-2 text-white-50">&nbsp;|&nbsp;</span>
+
+      <!-- Dirección:navegacion interna a contacto -->
+      <a class="enlace-contacto" routerLink="/contacto">
+        <!-- Añade el icono de ubicacion, bi=activa el paquete de iconos de Bootstrap. bi-geo-alt=muestra un icono-especifico me-1=margin end de tamaño 1 
+         La eitiqueta <i> aunque es para cursibas, se usa para marcar contenido de estilo diferente, por lo que viene ideal para usarlo en iconos-->
+        <i class="bi bi-geo-alt me-1"></i>
+        <span class="fw-medium">{{ addressText }}</span>
+      </a>
+    </div>
+  </div>
+</header>

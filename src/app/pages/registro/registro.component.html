@@ -1,0 +1,192 @@
+<div
+  class="d-flex justify-content-center align-items-center"
+  style="min-height: 70vh"
+>
+  <div class="card p-4" style="max-width: 420px; width: 95%">
+    <h4 class="mb-3 text-center">Crear cuenta</h4>
+
+    <form
+      [formGroup]="formularioRegistroUsuario"
+      (ngSubmit)="registrarUsuario()"
+    >
+      <!--nombre-->
+      <div class="mb-3">
+        <label class="form-label">Nombre y Apellidos*</label>
+        <input
+          type="text"
+          formControlName="nombre"
+          class="form-control"
+          [class.is-invalid]="nombre?.touched && nombre?.invalid"
+          placeholder="Nombre"
+          />
+        <div class="invalid-feedback" *ngIf="nombre?.touched && nombre?.errors">
+          <div *ngIf="nombre?.hasError('required')">
+            Los nombres y apellidos son obligatorios.
+          </div>
+          <div *ngIf="nombre?.hasError('pattern')">
+            Introduce un nombre valido</div>
+        </div>
+      </div>
+      
+      <!-- sexo tipo:checkbox-->
+      <label class="form-label">Sexo</label>
+      <select formControlName="sexo"
+      class="form-control">
+        <option value="H" selected>H</option>
+        <option value="M">M</option>
+      </select> 
+      
+      <!-- fechaNacimiento  tipo: calendario-->
+  <label for="fechanacimiento">Fecha de Nacimiento*</label>
+  <input type="date" id="fechanacimiento" formControlName="fechanacimiento"
+  class="form-control">
+
+      <!-- telefono -->
+      <div class="mb-3">
+        <label class="form-label">Telefono*</label>
+        <input
+          type="tel"
+          formControlName="tel"
+          class="form-control"
+          [class.is-invalid]="tel?.touched && tel?.invalid"
+          placeholder="Telefono"
+        />
+        <div class="invalid-feedback" *ngIf="tel?.touched && tel?.errors">
+          <div *ngIf="tel?.hasError('required')">
+            El telefono es obligatorio.
+          </div>
+          <div *ngIf="tel?.hasError('pattern')">Introduce un telefono valido</div>
+        </div>
+      </div>
+
+      <!-- cp -->
+  <div class="mb-3">
+        <label class="form-label">Codigo Postal</label>
+        <input
+          type="cp"
+          formControlName="cp"
+          class="form-control"
+          [class.is-invalid]="cp?.touched && cp?.invalid"
+          placeholder="Codigo Postal"
+        />
+        <div class="formt-text text-info" *ngIf="cp?.touched && cp?.errors">
+          <div *ngIf="cp?.hasError('pattern')">El codigo postal no es valido. </div>
+        </div>
+      </div>
+      <!-- direccion -->
+        <div class="mb-3">
+        <label class="form-label">Direccion</label>
+        <input
+          type="text"
+          formControlName="direccion"
+          class="form-control"
+          [class.is-invalid]="direccion?.touched && direccion?.invalid"
+          placeholder="Calle Numero Piso Puerta"
+        />
+        <div class="invalid-feedback" *ngIf="direccion?.touched && direccion?.errors">
+          <div *ngIf="direccion?.hasError('pattern')">
+           La direccion tiene caracteres no permitidos.
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+      <!-- imagen de perfil tipo : file -->
+<!--          <label for="fotoperfil">Foto de perfil</label>
+  <input type="file" id="fotoperfil" name="fotoperfil" (change)="fotoSeleccionada($event)">
+  <img *ngIf="preview" [src]="preview" class="img-thumbnail mt-2" width="150"> -->
+
+
+      <!-- EMAIL -->
+      <div class="mb-3">
+        <label class="form-label">Email*</label>
+        <input
+          type="email"
+          formControlName="email"
+          class="form-control"
+          [class.is-invalid]="email?.touched && email?.invalid"
+          placeholder="CorreoElectronico@correo.com"
+        />
+        <div class="invalid-feedback" *ngIf="email?.touched && email?.errors">
+          <div *ngIf="email?.hasError('required')">
+            El email es obligatorio.
+          </div>
+          <div *ngIf="email?.hasError('email')">Introduce un email válido.</div>
+        </div>
+      </div>
+
+      <!-- PASSWORD -->
+      <div class="mb-3">
+        <label class="form-label">Contraseña*</label>
+        <input
+          type="password"
+          formControlName="password"
+          class="form-control"
+          [class.is-invalid]="password?.touched && password?.invalid"
+          placeholder="Mínimo 5 caracteres"
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="password?.touched && password?.errors"
+        >
+          <div *ngIf="password?.hasError('required')">
+            La contraseña es obligatoria.
+          </div>
+          <div *ngIf="password?.hasError('minlength')">
+            Mínimo 5 caracteres.
+          </div>
+        </div>
+      </div>
+
+        <!-- RE-PASSWORD -->
+      <div class="mb-3">
+        <label class="form-label">Repita la Contraseña*</label>
+        <input
+          type="password"
+          formControlName="password"
+          class="form-control"
+          [class.is-invalid]="password?.touched && password?.invalid"
+          placeholder="Mínimo 5 caracteres"
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="password?.touched && password?.errors"
+        >
+          <div *ngIf="password?.hasError('required')">
+            La contraseña es obligatoria.
+          </div>
+          <div *ngIf="password?.hasError('minlength')">
+            Mínimo 5 caracteres.
+          </div>
+        </div>
+      </div>
+      <!-- Submit -->
+      <button
+        type="submit"
+        class="btn btn-primary w-100"
+        [disabled]="carga || formularioRegistroUsuario.invalid"
+      >
+        <span *ngIf="!carga">Registrarme</span>
+        <span *ngIf="carga">Creando cuenta...</span>
+      </button>
+
+      <!-- mensaje de éxito / error -->
+      <div
+        *ngIf="serverMessage"
+        class="alert mt-3"
+        [ngClass]="{ 'alert-success': success, 'alert-danger': !success }"
+      >
+        {{ serverMessage }}
+      </div>
+    </form>
+
+    <div class="text-center mt-3">
+      <small
+        >¿Ya tienes cuenta? <a routerLink="/autenticacion">Entrar</a></small
+      >
+    </div>
+  </div>
+</div>
