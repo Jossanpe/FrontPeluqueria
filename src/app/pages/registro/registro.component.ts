@@ -11,11 +11,12 @@ import { Router,RouterLink,RouterModule } from '@angular/router';
 import { UsuariosService } from '../../core/services/usuariosService/usuarios.service';
 import { RegistroUsuarioRequest, Usuario } from '../../models/usuario';
 import { HttpErrorResponse } from '@angular/common/http';
+import { BotonComponent } from "../../shared/boton/boton.component";
 
 @Component({
   selector: 'app-registro',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, BotonComponent],
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.css',
 })
@@ -142,15 +143,16 @@ export class RegistroComponent {
   preview: string | ArrayBuffer | null = null;
 
 fotoSeleccionada(event: any) {
-  const file: File = event.target.files[0];
+  const file: File = event.target.files[0]; // recibimos el evento de donde obtenemos el archivo, event.target es el input que ejecuto el evento, y files[0] es el primer archivo seleccionado
 
-  if (!file) return;
+  if (!file) return; //si no hay archivos salimos del metodo y no hacemos nada
 
+  //FileReader: clase que permite leer atchivos del usuario
   const reader = new FileReader();
-  reader.readAsDataURL(file); // Lee la imagen como base64
+  reader.readAsDataURL(file); // Lee la imagen como base64. Hace que se lea el archivo como texto codificado en Base64, y pueda ser usado como imagen en HTML
 
   reader.onload = () => {
-    this.preview = reader.result; // Guarda la imagen para mostrarla en el HTML
+    this.preview = reader.result; // Guarda la imagen para mostrarla en el HTML con data binding
   };
 }
 }

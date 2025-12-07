@@ -1,11 +1,65 @@
-:host {
-  display: block;
-}
 
 .card {
-  border-radius: 12px;
+  border-radius: 15px;
+  background-color: black;
+  margin:1%;
 }
 
 .form-control.is-invalid {
   box-shadow: none;
 }
+
+.fotoperfil{
+  width:200px; 
+  height:200px; 
+  object-fit:cover;
+  margin:15%;
+}
+
+.botonRegistrar{
+  width:10px;
+}
+
+   @media (max-width: 757px) {
+    .fotoperfil{
+      width:100px; 
+      height:100px; 
+  object-fit:cover;
+  margin:3%;
+}
+
+    }
+
+
+h2 {
+  font-weight: 300;
+color:white;
+ 
+}
+
+.input-img{
+  width:80px;
+  height:20px;
+  font-size:10px;
+
+  
+}
+input.form-control, select {
+  padding: 0.3rem;
+  border-radius: 8px;
+  margin-bottom:2%;
+}
+small{
+  color:white;
+}
+a{
+    color:rgba(227, 218, 201);
+    font-style:oblique;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size:small;
+    text-decoration: none;
+}
+
+    a:hover{
+        color:blueviolet
+    }

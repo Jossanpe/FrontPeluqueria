@@ -58,7 +58,14 @@ export class AutenticacionComponent {
     this.autenticacionService.autenticar(this.formularioAutenticacion.value)
       .pipe(finalize(() => (this.carga = false)))
       .subscribe({
-        next: () => this.router.navigate(['/citasdisponibles']),
+        next: () => 
+          {
+
+            //this.authService.saveToken(res.token);  // guardar token
+            this.router.navigate(['/citasdisponibles'])
+          //de alguna forma tengo que redirigi a una pagina o a otra segun si es administrados o usuario
+          },
+
         error: (err:any) => this.error = err?.error?.message || 'Credenciales incorrectas'
       });
   }

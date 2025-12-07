@@ -1,4 +1,4 @@
-<div class="login-container d-flex align-items-center justify-content-center">
+<main class="login-container d-flex align-items-center justify-content-center">
   <div class="login-box p-3">
 
       <img src="logo.png" alt="logo" width="80px" class="mx-auto d-block mb-3" />
@@ -40,6 +40,8 @@
         </div>
         <a href="/autenticacion">Recordar clave de acceso</a>
       </div>
+
+      
       <!-- BOTÓN -->
       <app-boton  class="mx-auto d-block" type="submit" [disabled]="carga">
         <span *ngIf="!carga">ENTRAR</span>
@@ -56,4 +58,4 @@
 
     </form>
   </div>
-</div>
+</main>
