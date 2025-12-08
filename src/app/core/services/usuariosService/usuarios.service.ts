@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'; //permite que angular pueda inyectar este sercicio en otros componentes
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { RegistroUsuarioRequest, Usuario } from '../../../models/usuario';
@@ -22,10 +22,9 @@ no valores directos, porque las peticiones son asincronas. Elmetodo devuelve un 
 cual es tratado el TypeScript del componenete donde usa el metodo, normalmente una PAGE. 
 Lo mejor es usar una interfaz para lo que devuelve, pero si no se puede usar any.
 */
-  registro(payload:RegistroUsuarioRequest):Observable<Usuario>{
-    return this.http.post<Usuario>(`${this.base}/usuarios/add`, payload);
-    console.log('UsuariosService base URL =', this.base);
-  }
-
   
+
+    registro(formData: FormData): Observable<any> {
+    return this.http.post<any>(`${this.base}/usuarios/add`, formData);
+  }
 }

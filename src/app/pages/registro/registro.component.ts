@@ -23,6 +23,12 @@ import { BotonComponent } from '../../shared/boton/boton.component';
 export class RegistroComponent {
   /* GETERS para obtener el valor de los campos del formulario, asi podemoso hacer las validaciones y el payload */
 
+//mantenemos la imagen seleccionada como File para enviarla más tarde
+
+  private imagenSeleccionada:File | null = null;
+
+
+  preview: string | ArrayBuffer | null = null;
 
   carga = false; 
   serverMessage: string | null = null;
@@ -91,31 +97,36 @@ export class RegistroComponent {
       ], 
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5)]],
+
+      fotoperfil:[null]
     });
   }
 
   
   //metodo asociado al boton para enviar los campos del formulario
+  //Construye FormData con todos los campos y la imagen si existe y la envia al servicio
   registrarUsuario() {
+    //evita mult envios
+    if(this.carga) return;
+
     this.serverMessage = null;
     if (this.formularioRegistroUsuario.invalid) {
       this.formularioRegistroUsuario.markAllAsTouched();
+      this.serverMessage='Corrige los errores del formulario antes de enviar.';
       return;
     }
 
-    //mapeamos la interfaz modelo
-    const payload: RegistroUsuarioRequest = {
-      nombre: this.nombre!.value,   
-      sexo:this.sexo!.value,
-      fechanacimiento:this.fechanacimiento!.value,
-      tel: this.tel!.value,
-      cp:this.cp!.value,
-      direccion:this.direccion!.value,
-      email: this.email!.value,
-      claveSeguridad: this.password!.value,
-    };
 
     this.carga = true;
+    this.serverMessage = '';
+    this.success = false;
+
+
+    //Construimos FormData: permite mezclar campos y archivos, si solo fueran campos podriamos usar el modelo
+     const formData = new FormData();
+    
+     //Añadimos los cmapos del form uno a uno 
+     const value= this.formularioRegistroUsuario.value;
    
     this.usuariosService.registro(payload).subscribe({
       next: (res: any) => {
@@ -141,20 +152,66 @@ export class RegistroComponent {
 
 
 
-  /* metodo para previsulizar la imagen subida */
-  preview: string | ArrayBuffer | null = null;
+   /* metodo para previsulizar la imagen subida */
+   /**
+    Se dispara al cambiar el input file (change)="fotoSeleccionada($event)"
+    Obtenemos la File, guardamos para enviarla y creamos el preview (Data URL).
+   */
 
-fotoSeleccionada(event: any) {
-  const file: File = event.target.files[0]; // recibimos el evento de donde obtenemos el archivo, event.target es el input que ejecuto el evento, y files[0] es el primer archivo seleccionado
+fotoSeleccionada(event: Event) {
+  // recibimos el evento de donde obtenemos el archivo,
+  //  event.target es el input que ejecuto el evento, y como puede ser culaquier cosa (div, button, span),
+  //le indicamos que es un input (forzamos el tipo), 
+  // de esta manera podremos acceder a los metodos que tiene elObjeto Input
 
-  if (!file) return; //si no hay archivos salimos del metodo y no hacemos nada
+  const input = event.target as HTMLInputElement;
+  //si no hay archivo, salimos.
+  if (!input.files || input.files.length===0){
+    this.imagenSeleccionada = null;
+    this.preview=null;
+    //actualizamos el control fotoperfil para mantener consistencia del FormGroup.
+    //patchValue: actualizar solo algunos camapos del formulario, en este caso el campo fotoPerfil
+    //a diferencia de setValue que actualizaria todos los campos del formulario(necesitas poner todos los campos, si no da error)
+    this.formularioRegistroUsuario.patchValue({fotoperfil:null});
+    return; //si no hay archivos salimos del metodo y no hacemos nada
+  } 
+    
 
+  //Toamos el primer archivo
+  const file = input.files[0];
+  // Validación básica en el front:
+    const accepted = ['image/png', 'image/jpeg', 'image/webp', 'image/gif'];
+    const maxSize = 5 * 1024 * 1024; // 5MB
+
+       if (!accepted.includes(file.type)) {
+      this.serverMessage = 'Tipo de archivo no permitido. Usa PNG/JPEG/WEBP/GIF.';
+      this.imagenSeleccionada = null;
+      this.preview = null;
+      this.formularioRegistroUsuario.patchValue({ fotoperfil: null });
+      return;
+    }
+
+    if (file.size > maxSize) {
+      this.serverMessage = `Archivo demasiado grande. Máximo ${(maxSize / (1024 * 1024)).toFixed(1)} MB.`;
+      this.imagenSeleccionada = null;
+      this.preview = null;
+      this.formularioRegistroUsuario.patchValue({ fotoperfil: null });
+      return;
+    }
+
+    //Guardamos el File par enviarla despues
+    this.imagenSeleccionada=file;
+
+    //Actualizamos el control delFormGroup 
+    this.formularioRegistroUsuario.patchValue({forperfil:file});
+
+//CREACION PREVISUALIZCION CON FILEREADER para que el usuario vea la imagen
   //FileReader: clase que permite leer atchivos del usuario
   const reader = new FileReader();
-  reader.readAsDataURL(file); // Lee la imagen como base64. Hace que se lea el archivo como texto codificado en Base64, y pueda ser usado como imagen en HTML
-
+  
   reader.onload = () => {
     this.preview = reader.result; // Guarda la imagen para mostrarla en el HTML con data binding
   };
+  reader.readAsDataURL(file); // Lee la imagen como base64. Hace que se lea el archivo como texto codificado en Base64, y pueda ser usado como imagen en HTML
 }
 }

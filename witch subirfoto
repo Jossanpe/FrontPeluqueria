@@ -1,0 +1,23 @@
+[33mcommit 07facf8c41c0d49851a823b22f312ac629f4b30c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;32msubirfoto[m[33m)[m
+Author: Jose Sanchez <jossanper2@alu.edu.gva.es>
+Date:   Sun Dec 7 20:50:40 2025 +0100
+
+    terminado front registro
+
+[33mcommit 9cbfba1d2d6212e2aacfcd9111a48978ea109f7b[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Jose Sanchez <jossanper2@alu.edu.gva.es>
+Date:   Sun Dec 7 19:07:58 2025 +0100
+
+    v0.0.1. Finalizado el Diseño del registro, aunque falta el boton que no aparecen su contenido
+
+[33mcommit b8abd94f08f8a3db82e8e8e175d25cc1ec7fbc42[m[33m ([m[1;33mtag: [m[1;33mv0.0[m[33m)[m
+Author: Jose Sanchez <jossanper2@alu.edu.gva.es>
+Date:   Sun Dec 7 16:13:48 2025 +0100
+
+    Primer commit del Front poryecto Peluqueria
+
+[33mcommit 9f87f4ab47216dc21e75e5dd42a5f49b965b0588[m
+Author: Jose Sanchez <jossanper2@alu.edu.gva.es>
+Date:   Sun Nov 30 00:41:29 2025 +0100
+
+    initial commit
