@@ -127,7 +127,7 @@ export class RegistroComponent {
     
      //Añadimos los cmapos del form uno a uno 
      const value= this.formularioRegistroUsuario.value;
-   
+
     this.usuariosService.registro(payload).subscribe({
       next: (res: any) => {
         this.carga = false;
