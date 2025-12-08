@@ -125,16 +125,36 @@ export class RegistroComponent {
     //Construimos FormData: permite mezclar campos y archivos, si solo fueran campos podriamos usar el modelo
      const formData = new FormData();
     
-     //Añadimos los cmapos del form uno a uno 
+     //Añadimos los campos del form uno a uno 
      const value= this.formularioRegistroUsuario.value;
 
-    this.usuariosService.registro(payload).subscribe({
-      next: (res: any) => {
+      // Ejemplo: añadir campos de texto.
+    // IMPORTANTE: los nombres de campo deben coincidir con lo que espera tu backend.
+    formData.append('nombre', value.nombre || '');
+    formData.append('sexo', value.sexo || '');
+    formData.append('fechanacimiento', value.fechanacimiento || '');
+    formData.append('tel', value.tel || '');
+    formData.append('cp', value.cp || '');
+    formData.append('direccion', value.direccion || '');
+    formData.append('email', value.email || '');
+    formData.append('password', value.password || '');
+
+    //Si hay imagen seleccionada, la añadimo con la clave 'fotoperfil'
+    //(mismo nombre que uses en el backend)
+    if(this.imagenSeleccionada){
+      formData.append('fotoperfil', this.imagenSeleccionada, this.imagenSeleccionada.name)
+    }
+
+    //Llamamos al servicio que hace la petición POST. El servicio devuleve 0.
+    
+    this.usuariosService.registro(formData).subscribe({
+      next: (respuestaServidor: any) => {
         this.carga = false;
         this.success = true;
-        this.serverMessage = res.message ?? 'Cuenta creada correctamente.';
+        this.serverMessage = respuestaServidor.message ?? 'Cuenta creada correctamente.';
+       
         // Si el backend devuelve token y quieres ir al dashboard:
-        if (res.token) {
+        if (respuestaServidor.token) {
           // ya guardado por el service, navegamos
           this.router.navigate(['/citasdisponibles']);
         } else {
@@ -142,9 +162,12 @@ export class RegistroComponent {
           setTimeout(() => this.router.navigate(['/autenticacion']), 1000);
         }
       },
+
+      //tratamiento de errores
       error: (err: HttpErrorResponse | any) => {
         this.carga = false;
         this.success = false;
+        //Mostrar mensaje de error, ajustado a la respuesta real de la API
         this.serverMessage = err?.message ?? 'Error al crear la cuenta.';
       },
     });
