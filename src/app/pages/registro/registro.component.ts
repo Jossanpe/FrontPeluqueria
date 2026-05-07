@@ -132,12 +132,12 @@ export class RegistroComponent {
     // IMPORTANTE: los nombres de campo deben coincidir con lo que espera tu backend.
     formData.append('nombre', value.nombre || '');
     formData.append('sexo', value.sexo || '');
-    formData.append('fechanacimiento', value.fechanacimiento || '');
+   // formData.append('fechanacimiento', value.fechanacimiento || '');
     formData.append('tel', value.tel || '');
     formData.append('cp', value.cp || '');
     formData.append('direccion', value.direccion || '');
     formData.append('email', value.email || '');
-    formData.append('password', value.password || '');
+    formData.append('claveSeguridad', value.password || '');
 
     //Si hay imagen seleccionada, la añadimo con la clave 'fotoperfil'
     //(mismo nombre que uses en el backend)
