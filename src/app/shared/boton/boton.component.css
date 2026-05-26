@@ -3,7 +3,7 @@ button{
     font-weight: 500;
     width:90%;
     margin:10px;
-    border-radius:5px;
+   
     border-color: white;
 
     &.registro{

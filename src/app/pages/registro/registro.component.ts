@@ -12,11 +12,15 @@ import { UsuariosService } from '../../core/services/usuariosService/usuarios.se
 import { RegistroUsuarioRequest, Usuario } from '../../models/usuario';
 import { HttpErrorResponse } from '@angular/common/http';
 import { BotonComponent } from '../../shared/boton/boton.component';
+import { HeaderComponent } from "../../shared/header/header.component";
+import { FooterComponent } from "../../shared/footer/footer.component";
+import { TenantService } from '../../core/services/tenantService/tenant.service';
+
 
 @Component({
   selector: 'app-registro',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, BotonComponent],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, BotonComponent,HeaderComponent, FooterComponent],
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.css',
 })
@@ -26,6 +30,7 @@ export class RegistroComponent {
 //mantenemos la imagen seleccionada como File para enviarla más tarde
 
   private imagenSeleccionada:File | null = null;
+  
 
 
   preview: string | ArrayBuffer | null = null;
@@ -40,25 +45,10 @@ export class RegistroComponent {
     return this.formularioRegistroUsuario.get('nombre');
     }
     
-  get sexo(){
-    return this.formularioRegistroUsuario.get('sexo');
-  }
- 
-  get fechanacimiento(){
-    return this.formularioRegistroUsuario.get('fechanacimiento');
-  }
- 
  get tel() {
    return this.formularioRegistroUsuario.get('tel');
    } 
    
-  get cp() {
-    return this.formularioRegistroUsuario.get('cp');
-  } 
-  get direccion() {
-    return this.formularioRegistroUsuario.get('direccion');
-  }  
-
     get email() {
       return this.formularioRegistroUsuario.get('email');
     }
@@ -70,7 +60,9 @@ export class RegistroComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private usuariosService: UsuariosService
+    private usuariosService: UsuariosService,
+    private tenantService: TenantService
+    
   ) {
 
     this.formularioRegistroUsuario = this.fb.group({
@@ -120,6 +112,7 @@ export class RegistroComponent {
     this.carga = true;
     this.serverMessage = '';
     this.success = false;
+    const tenant =this.tenantService.obtenerTenant();
 
 
     //Construimos FormData: permite mezclar campos y archivos, si solo fueran campos podriamos usar el modelo
@@ -131,11 +124,9 @@ export class RegistroComponent {
       // Ejemplo: añadir campos de texto.
     // IMPORTANTE: los nombres de campo deben coincidir con lo que espera tu backend.
     formData.append('nombre', value.nombre || '');
-    formData.append('sexo', value.sexo || '');
-   // formData.append('fechanacimiento', value.fechanacimiento || '');
+    
     formData.append('tel', value.tel || '');
-    formData.append('cp', value.cp || '');
-    formData.append('direccion', value.direccion || '');
+   
     formData.append('email', value.email || '');
     formData.append('claveSeguridad', value.password || '');
 
@@ -144,7 +135,7 @@ export class RegistroComponent {
     if(this.imagenSeleccionada){
       formData.append('fotoperfil', this.imagenSeleccionada, this.imagenSeleccionada.name)
     }
-
+    formData.append('tenant',tenant);
     //Llamamos al servicio que hace la petición POST. El servicio devuleve 0.
     
     this.usuariosService.registro(formData).subscribe({

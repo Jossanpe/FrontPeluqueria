@@ -1,8 +1,12 @@
 
 .card {
-  border-radius: 15px;
+ margin-bottom:0px;
+ margin-top:100px;
   background-color: black;
-  margin:1%;
+    width:100%;
+  max-width:1020px;
+
+  
 }
 
 .form-control.is-invalid {
@@ -38,13 +42,12 @@ color:white;
 }
 
 .input-img{
-  width:80px;
+  width:150px;
   height:20px;
   font-size:10px; 
 }
 input.form-control, select {
   padding: 0.3rem;
-  border-radius: 8px;
   margin-bottom:2%;
 }
 small{
@@ -61,3 +64,35 @@ a{
     a:hover{
         color:blueviolet
     }
+
+    @media (max-width: 768px){
+
+  .logo-registro{
+    display: none;
+  }
+
+    
+  .header-registro{
+    justify-content: center !important;
+  }
+
+  .titulo-registro{
+    width: 100%;
+    text-align: center;
+  }
+  .card{
+    margin-top:80px;
+  }
+
+.registro-container{
+  min-height: calc(100vh - 160px);
+
+  display:flex;
+  justify-content:center;
+}
+    .card{
+      margin-top:160px;
+    }
+
+}
+

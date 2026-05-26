@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HorariosComponent } from './horarios.component';
+import { NavAdminComponent } from './nav-admin.component';
 
-describe('HorariosComponent', () => {
-  let component: HorariosComponent;
-  let fixture: ComponentFixture<HorariosComponent>;
+describe('NavAdminComponent', () => {
+  let component: NavAdminComponent;
+  let fixture: ComponentFixture<NavAdminComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HorariosComponent]
+      imports: [NavAdminComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(HorariosComponent);
+    fixture = TestBed.createComponent(NavAdminComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

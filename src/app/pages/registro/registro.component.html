@@ -1,137 +1,90 @@
-<main
-  class="d-flex justify-content-center align-items-center bg-red"
-  style="min-height: 70vh"
->
+<div class="pagina d-flex flex-column min-vh-100">
+
+  <app-header></app-header>
+  <main
+  class=" registro-container flex-grow-1 d-flex justify-content-center"
+  >
   <div class="card p-4" style="max-width: 1020px; width: 95%">
     <div class="d-flex align-items-center justify-content-between">
-
-      <img src="logo.png" alt="logo" width="80px" class="mb-3" />
+      
+      <img src="logo.png" alt="logo" width="80px" class=" logo-registro mb-3" />
       <!-- mx-auto: margenes horizontales automáticos; d-block: convierte la imagen esn display:block  -->
       <h2 class="text-center mb-3 titulo-greatvibes">CREAR CUENTA</h2>
     </div>
-
+    
     <form  
-         [formGroup]="formularioRegistroUsuario"
-      (ngSubmit)="registrarUsuario()"
+    [formGroup]="formularioRegistroUsuario"
+    (ngSubmit)="registrarUsuario()"
     >
-
+    
     <div class="row">
-
+      
       <section class="col-md-6">
         
         <!--nombre-->
         <div class="mb-3">
           <label class="form-label">Nombre y Apellidos*</label>
-        <input
-        type="text"
-        formControlName="nombre"
-        class="form-control"
-        [class.is-invalid]="nombre?.touched && nombre?.invalid"
-        placeholder="Nombre"
-        />
-        <div class="invalid-feedback" *ngIf="nombre?.touched && nombre?.errors">
-          <div *ngIf="nombre?.hasError('required')">
-            Los nombres y apellidos son obligatorios.
+          <input
+          type="text"
+          formControlName="nombre"
+          class="form-control"
+          [class.is-invalid]="nombre?.touched && nombre?.invalid"
+          placeholder="Nombre"
+          />
+          <div class="invalid-feedback" *ngIf="nombre?.touched && nombre?.errors">
+            <div *ngIf="nombre?.hasError('required')">
+              Los nombres y apellidos son obligatorios.
+            </div>
+            <div *ngIf="nombre?.hasError('pattern')">
+              Introduce un nombre valido</div>
+            </div>
           </div>
-          <div *ngIf="nombre?.hasError('pattern')">
-            Introduce un nombre valido</div>
+          
+          
+          
+          <!-- telefono -->
+          <div class="mb-3">
+            <label class="form-label">Telefono*</label>
+            <input
+            type="tel"
+            formControlName="tel"
+            class="form-control"
+            [class.is-invalid]="tel?.touched && tel?.invalid"
+            placeholder="Telefono"
+            />
+            <div class="invalid-feedback" *ngIf="tel?.touched && tel?.errors">
+              <div *ngIf="tel?.hasError('required')">
+                El telefono es obligatorio.
+              </div>
+              <div *ngIf="tel?.hasError('pattern')">Introduce un telefono valido</div>
+            </div>
           </div>
-        </div>
-        
-        <!-- sexo tipo:checkbox-->
-        <label class="form-label">Sexo</label>
-        <select formControlName="sexo"
-        class="form-control">
-        <option value="H" selected>H</option>
-        <option value="M">M</option>
-      </select> 
-      
-      <!-- fechaNacimiento  tipo: calendario-->
-      <label for="fechanacimiento">Fecha de Nacimiento*</label>
-      <input type="date" id="fechanacimiento" formControlName="fechanacimiento"
-      class="form-control">
-      
-      <!-- telefono -->
-      <div class="mb-3">
-        <label class="form-label">Telefono*</label>
-        <input
-        type="tel"
-        formControlName="tel"
-        class="form-control"
-        [class.is-invalid]="tel?.touched && tel?.invalid"
-        placeholder="Telefono"
-        />
-        <div class="invalid-feedback" *ngIf="tel?.touched && tel?.errors">
-          <div *ngIf="tel?.hasError('required')">
-            El telefono es obligatorio.
+          <!-- EMAIL -->
+          <div class="mb-3">
+            <label class="form-label">Email*</label>
+            <input
+            type="email"
+            formControlName="email"
+            class="form-control"
+            [class.is-invalid]="email?.touched && email?.invalid"
+            placeholder="CorreoElectronico@correo.com"
+            />
+            <div class="invalid-feedback" *ngIf="email?.touched && email?.errors">
+              <div *ngIf="email?.hasError('required')">
+                El email es obligatorio.
+              </div>
+              <div *ngIf="email?.hasError('email')">Introduce un email válido.</div>
+            </div>
           </div>
-          <div *ngIf="tel?.hasError('pattern')">Introduce un telefono valido</div>
-        </div>
-      </div>
-      
-      <!-- cp -->
-      <div class="mb-3">
-        <label class="form-label">Codigo Postal</label>
-        <input
-        type="cp"
-        formControlName="cp"
-        class="form-control"
-        [class.is-invalid]="cp?.touched && cp?.invalid"
-        placeholder="Codigo Postal"
-        />
-        <div class="formt-text text-info" *ngIf="cp?.touched && cp?.errors">
-          <div *ngIf="cp?.hasError('pattern')">El codigo postal no es valido. </div>
-        </div>
-      </div>
-      <!-- direccion -->
-      <div class="mb-3">
-        <label class="form-label">Direccion</label>
-        <input
-        type="text"
-        formControlName="direccion"
-        class="form-control"
-        [class.is-invalid]="direccion?.touched && direccion?.invalid"
-        placeholder="Calle Numero Piso Puerta"
-        />
-        <div class="invalid-feedback" *ngIf="direccion?.touched && direccion?.errors">
-          <div *ngIf="direccion?.hasError('pattern')">
-            La direccion tiene caracteres no permitidos.
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    
-    
-    <section class="col-md-6">
-      
-   
-      <!-- EMAIL -->
-      <div class="mb-3">
-        <label class="form-label">Email*</label>
-        <input
-        type="email"
-        formControlName="email"
-        class="form-control"
-        [class.is-invalid]="email?.touched && email?.invalid"
-        placeholder="CorreoElectronico@correo.com"
-        />
-        <div class="invalid-feedback" *ngIf="email?.touched && email?.errors">
-          <div *ngIf="email?.hasError('required')">
-            El email es obligatorio.
-          </div>
-          <div *ngIf="email?.hasError('email')">Introduce un email válido.</div>
-        </div>
-      </div>
-      
-      <!-- PASSWORD -->
-      <div class="mb-3">
-        <label class="form-label">Contraseña*</label>
-        <input
-        type="password"
-        formControlName="password"
-        class="form-control"
-        [class.is-invalid]="password?.touched && password?.invalid"
+          
+          <!-- PASSWORD -->
+          <div class="mb-3">
+            <label class="form-label">Contraseña*</label>
+            <input
+            type="password"
+            formControlName="password"
+            class="form-control"
+            [class.is-invalid]="password?.touched && password?.invalid"
         placeholder="Mínimo 5 caracteres"
         />
         <div
@@ -162,50 +115,62 @@
       *ngIf="password?.touched && password?.errors"
       >
       <div *ngIf="password?.hasError('required')">
-          La contraseña es obligatoria.
-        </div>
-        <div *ngIf="password?.hasError('minlength')">
-          Mínimo 5 caracteres.
-        </div>
+        La contraseña es obligatoria.
       </div>
-    </div>
-       
-      <!-- imagen de perfil tipo : file -->
-      <label class="form-label" for="fotoperfil">Foto de perfil</label>
-      <div class=" d-flex justify-content">
-
-        <input type="file" id="fotoperfil" class="input-img" formControlName="fotoperfil" (change)="fotoSeleccionada($event)">
-        <img *ngIf="preview" [src]="preview" class="rounded-circle mt-3 fotoperfil">
+      <div *ngIf="password?.hasError('minlength')">
+        Mínimo 5 caracteres.
       </div>
-      
-      
-    </section>
-    </div>
-    
-    <!-- Submit -->
-    <app-boton
-    variant="registro"
-    type="submit"
-    [disabled]="carga || formularioRegistroUsuario.invalid"
-    >
-    <span *ngIf="!carga">Registrarme</span>
-    <span *ngIf="carga">Creando cuenta...</span>
-  </app-boton>
-  
-  <!-- mensaje de éxito / error -->
-  <div
-  *ngIf="serverMessage"
-  class="alert mt-3"
-  [ngClass]="{ 'alert-success': success, 'alert-danger': !success }"
-  >
-  {{ serverMessage }}
-</div>
-</form>
-    
-    <div class="text-center mt-3">
-      <small
-      >¿Ya tienes cuenta? <a routerLink="/autenticacion">Entrar</a></small
-      >
     </div>
   </div>
+  
+</section>
+
+
+
+<section class="col-md-6">
+  
+  
+  
+  
+  <!-- imagen de perfil tipo : file -->
+  <label class="form-label" for="fotoperfil">Foto de perfil</label>
+  <div class=" d-flex justify-content">
+    
+    <input type="file" id="fotoperfil" class="input-img" formControlName="fotoperfil" (change)="fotoSeleccionada($event)">
+    <img *ngIf="preview" [src]="preview" class="rounded-circle mt-3 fotoperfil">
+  </div>
+  
+  
+</section>
+</div>
+
+<!-- Submit -->
+<app-boton
+variant="registro"
+type="submit"
+[loading]="carga"
+[disabled]="carga|| formularioRegistroUsuario.invalid"
+>
+<span *ngIf="!carga">Registrarme</span>
+<span *ngIf="carga">Creando cuenta...</span>
+</app-boton>
+
+<!-- mensaje de éxito / error -->
+<div
+*ngIf="serverMessage"
+class="alert mt-3"
+[ngClass]="{ 'alert-success': success, 'alert-danger': !success }"
+>
+{{ serverMessage }}
+</div>
+</form>
+
+<div class="text-center mt-3">
+  <small
+  >¿Ya tienes cuenta? <a routerLink="/autenticacion">Entrar</a></small
+  >
+</div>
+</div>
 </main>
+<app-footer></app-footer>
+</div>

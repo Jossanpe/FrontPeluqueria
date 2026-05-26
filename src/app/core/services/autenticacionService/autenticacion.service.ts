@@ -14,7 +14,7 @@ export class AutenticacionService {
   constructor(private http: HttpClient) {}
 
   autenticar(payload:AutenticacionRequest ): Observable<AutenticacionResponse> {
-    return this.http.post<AutenticacionResponse>(`${this.base}/autenticaciones/autenticar`, payload);
+    return this.http.post<AutenticacionResponse>(`${this.base}/usuarios/login`, payload);
   }
 }
 

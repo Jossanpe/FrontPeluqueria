@@ -2,7 +2,6 @@
 
 export interface RegistroUsuarioRequest {
    id?: number;
-   sexo:string; 
     fechanacimiento: Date; 
     cp:number;
      direccion:string;
@@ -17,7 +16,6 @@ export interface RegistroUsuarioRequest {
 export interface Usuario {
       id?: number;
       nombre:string;
-      sexo:string;
        fechanacimiento: Date;
       tel:string;
      cp:string;

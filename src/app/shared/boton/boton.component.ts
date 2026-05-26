@@ -16,6 +16,7 @@ export class BotonComponent {
   @Input() type: 'button' | 'submit' = 'button';
   @Input() class: string = '';
   @Input() variant!: 'login' | 'registro';
+  @Input() loading = false;
 
   /* Input permite que un componente reciba valores desde el HTML.  */
 }
