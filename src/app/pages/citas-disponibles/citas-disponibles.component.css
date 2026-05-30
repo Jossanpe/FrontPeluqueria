@@ -1,27 +1,381 @@
-.nav-fixed{
+.nav-fixed {
+  position: fixed;
 
-  position:fixed;
+  top: 100px;
 
-  top:100px;
+  left: 0;
 
-  left:0;
+  width: 100%;
 
-  width:100%;
-
-  z-index:999;
+  z-index: 999;
 }
-@media(max-width:768px){
-
-  .nav-fixed{
-
-    top:160px;
+@media (max-width: 768px) {
+  .nav-fixed {
+    top: 160px;
   }
 }
 
-@media(max-width:440px){
-
-  .nav-fixed{
-
-    top:170px;
+@media (max-width: 440px) {
+  .nav-fixed {
+    top: 180px;
   }
 }
+
+.contenedor-reservas {
+  background: #d8d0c0;
+
+  min-height: 100vh;
+
+  padding: 4rem 2rem;
+    margin-top: 120px;
+}
+
+.cabecera-reservas {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 2rem;
+
+  margin-bottom: 4rem;
+}
+
+.cabecera-reservas h1 {
+  font-size: 4rem;
+
+  font-weight: 700;
+}
+
+.btn-nav {
+  border: solid black;
+
+  background: #6eaeb3;
+
+  color: black;
+
+  width: 50px;
+
+  height: 30px;
+
+  font-size: 1rem;
+
+  transition: 0.3s;
+  margin: 2px;
+ 
+}
+
+.btn-nav:hover {
+  transform: scale(1.1);
+}
+
+.fila-semana {
+  
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 1rem;
+}
+
+.columna-dia {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+}
+
+.slots-container {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 0.5rem;
+
+}
+.slot-btn{
+
+  border: 2px solid black;
+
+  background: white;
+
+  border-radius: 10px;
+
+  padding: 0.5rem;
+  width:100px;
+
+  transition: all 0.2s ease;
+
+  cursor: pointer;
+}
+
+.slot-btn:hover{
+
+  background: #6eaeb3;
+
+  color: white;
+
+  transform: scale(1.15);
+
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.cabecera-dia {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 0.8rem;
+
+  margin-bottom: 1rem;
+}
+
+.cabecera-dia h3 {
+  margin: 0;
+
+  font-size: 1.3rem;
+
+  font-weight: 600;
+
+  text-align: center;
+}
+
+
+.circulo-dia {
+  width: 70px;
+
+  height: 70px;
+
+  border: 2px solid black;
+
+  border-radius: 50%;
+
+  background: white;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  font-size: 2rem;
+
+  font-weight: bold;
+
+  color: black;
+}
+
+
+.dia-actual{
+
+  background-color: #6eaeb3;
+
+  color: white;
+
+  border: 3px solid #000;
+
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.titulo-mes{
+  margin:0;
+
+
+  font-size: 3rem;
+
+  font-weight: bold;
+
+  text-transform: uppercase;
+}
+
+
+.input-oculto{
+
+  position:absolute;
+
+  opacity:0;
+
+  pointer-events:none;
+}
+
+.btn-calendario{
+
+  border:none;
+
+  background:none;
+
+  font-size:3rem;
+
+  cursor:pointer;
+}
+
+.btn-calendario:hover{
+    transform: scale(1.1);
+
+}
+
+.navegacion-semana{
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+  margin: 0 auto;
+
+}
+
+@media (max-width: 768px) {
+    .cabecera-reservas{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top:50px;
+  }
+
+  .titulo-mes{
+    width: 100%;
+    text-align: center;
+  }
+
+  .navegacion-semana{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .75rem;
+  }
+
+  .controles-semana{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: .5rem;
+  }
+
+  .fila-semana{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .slots-container{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+
+  .slot-btn{
+    width: 100%;
+  }
+
+}
+
+
+
+
+
+
+
+.controles-semana{
+
+  display:flex;
+
+  align-items:center;
+}
+
+.modal-overlay{
+
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0,0,0,.5);
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  z-index: 9999;
+}
+
+.modal-reserva{
+
+  background: white;
+
+  padding: 2rem;
+
+  border-radius: 12px;
+
+  width: 400px;
+
+  max-width: 90%;
+
+  text-align: center;
+}
+
+.acciones-modal{
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 1rem;
+
+  margin-top: 1.5rem;
+}
+
+.btn-confirmar{
+
+  background: #6eaeb3;
+
+  border: none;
+
+  padding: .7rem 1.5rem;
+
+  color: white;
+
+  border-radius: 8px;
+}
+
+.btn-cancelar{
+
+  background: red;
+
+  border: none;
+
+  padding: .7rem 1.5rem;
+
+  border-radius: 8px;
+}
+.btn-confirmar:hover{
+  transform: scale(1.1);
+
+}
+.btn-cancelar:hover{
+   transform: scale(1.1);
+}
+
+
+.modal-confirmacion{
+
+  background: white;
+
+  padding: 2rem;
+
+  border-radius: 12px;
+
+  width: 400px;
+
+  max-width: 90%;
+
+  text-align: center;
+}
+

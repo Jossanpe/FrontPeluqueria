@@ -11,6 +11,7 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  
   phone = '600123456';
   addressText = 'Paseo de las Estrellas Danzantes, Villa Lumenia';
 }

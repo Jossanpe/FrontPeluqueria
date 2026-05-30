@@ -1,1 +1,46 @@
-<p>reserva works!</p>
+<app-header></app-header>
+
+<app-nav-cliente class="nav-fixed "></app-nav-cliente>
+<div class="contenido-page">
+<main class="container-fluid g-0 main-con-nav">
+        <div class="row g-0">
+    <div
+  class="reserva-card"
+  *ngIf="reserva"
+>
+
+
+  <div class="datos-reserva">
+
+    <div class="dia">
+      {{ reserva.fechaReserva | date:'EEEE d' | uppercase }}
+    </div>
+
+    <div class="mes">
+      {{ reserva.fechaReserva | date:'MMMM' | uppercase }}
+    </div>
+
+    <div class="hora">
+      {{ reserva.horaInicio.substring(0,5) }}
+    </div>
+
+  </div>
+
+  <button class="btn-cancelar" (click)="cancelarReserva()">
+    CANCELAR RESERVA
+  </button>
+
+</div>
+            <div
+  class="reserva-card"
+  *ngIf="!reserva"
+>
+
+  <h2>No tienes ninguna reserva activa</h2>
+
+</div>
+            
+        </div>
+    </main>
+    <app-footer></app-footer>
+</div>

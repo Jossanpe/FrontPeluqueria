@@ -1,17 +1,21 @@
 <nav class="nav-cliente d-flex align-items-center px-4">
   <!-- MENU -->
-  <div   class="menu-icon me-4" (click)="menuAbierto = !menuAbierto">
+ <div
+    class="menu-icon me-4 d-md-none"
+    (click)="menuAbierto = !menuAbierto">
+
     <i class="bi bi-list"></i>
+
   </div>
 
   <!-- LINKS -->
   <div class="nav-links d-none d-md-flex flex-grow-1 h-100 justify-content-around"
   >
-    <a routerLink="/citas-disponibles"   routerLinkActive="activo" class="activo"> DISPONIBILIDAD </a>
+    <a routerLink="/citas-disponibles"   routerLinkActive="activo"> DISPONIBILIDAD </a>
 
-    <a routerLink="/reserva"   routerLinkActive="activo"> RESERVA </a>
+    <a routerLink="/reserva"   routerLinkActive="activo" > RESERVA </a>
 
-    <a routerLink="/perfil"   routerLinkActive="activo"> PERFIL </a>
+    <a routerLink="/perfil"   routerLinkActive="activo" > PERFIL </a>
   </div>
 
   <!-- PERFIL -->
@@ -19,7 +23,7 @@
   <img
     [src]="fotoUsuario"
     alt="perfil"
-    class="foto-perfil-navbar"
+    class="fotoperfil"
   />
 
   </div>

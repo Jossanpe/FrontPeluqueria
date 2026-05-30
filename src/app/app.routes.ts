@@ -9,24 +9,26 @@ import { AgendaComponent } from './pages/agenda/agenda.component';
 import { ClientesComponent } from './pages/clientes/clientes.component';
 import { PanelcontrolComponent } from './pages/panelcontrol/panelcontrol.component';
 import { PerfilAdminComponent } from './pages/perfil-admin/perfil-admin.component';
+import { authGuard } from './core/guards/auth.guard.service';
 
+import { adminGuard } from './core/guards/admin.guard.service';
 
 
 export const routes: Routes = [
  
-  { path: '', component: HomeComponent, title:'LineaFina' },
+  { path: '', component: HomeComponent, title:'Home' },
   { path: 'registro', component:RegistroComponent, title:'Registro'},
   { path: 'autenticacion', component:AutenticacionComponent, title:'Inicio Sesion'},
    
-    { path: 'citas-disponibles', component:CitasDisponiblesComponent, title:'Citas Disponibles'},
-   { path: 'reserva', component:ReservaComponent, title:'Reserva'},
-   { path: 'perfil', component:PerfilComponent, title:'Perfil Cliente'},
+    { path: 'citas-disponibles', component:CitasDisponiblesComponent, title:'Citas Disponibles',canActivate:[authGuard]},
+   { path: 'reserva', component:ReservaComponent, title:'Reserva',canActivate:[authGuard]},
+   { path: 'perfil', component:PerfilComponent, title:'Perfil Cliente',canActivate:[authGuard]},
 
 
-   { path: 'agenda', component:AgendaComponent, title:'Agenda'},
-   { path: 'clientes', component:ClientesComponent, title:'Clientes'},
-   { path: 'panel-control', component:PanelcontrolComponent, title:'Panel Control'},
-   { path: 'perfi-ladmin', component:PerfilAdminComponent, title:'Perfil Admin'},
+   { path: 'agenda', component:AgendaComponent, title:'Agenda',canActivate:[authGuard,adminGuard]},
+   { path: 'clientes', component:ClientesComponent, title:'Clientes', canActivate:[authGuard,adminGuard] },
+   { path: 'panel-control', component:PanelcontrolComponent, title:'Panel Control', canActivate:[authGuard,adminGuard]},
+   { path: 'perfil-admin', component:PerfilAdminComponent, title:'Perfil Admin', canActivate:[authGuard,adminGuard]},
    
   { path: '**', redirectTo: '', pathMatch:'full' },
   

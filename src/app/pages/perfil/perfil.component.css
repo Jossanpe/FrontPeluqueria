@@ -1,0 +1,27 @@
+.nav-fixed{
+
+  position:fixed;
+
+  top:100px;
+
+  left:0;
+
+  width:100%;
+
+  z-index:999;
+}
+@media(max-width:768px){
+
+  .nav-fixed{
+
+    top:160px;
+  }
+}
+
+@media(max-width:440px){
+
+  .nav-fixed{
+
+    top:170px;
+  }
+}

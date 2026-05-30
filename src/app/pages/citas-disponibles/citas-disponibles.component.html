@@ -1,13 +1,125 @@
 <app-header></app-header>
+<app-nav-cliente class="nav-fixed"></app-nav-cliente>
 
-<app-nav-cliente class="nav-fixed "></app-nav-cliente>
 <div class="contenido-page">
-<main class="container-fluid g-0 main-con-nav">
-        <div class="row min-vh-100 g-0">
-            
-            
-            
+  <main class="container-fluid g-0 main-con-nav">
+    <div class="contenedor-reservas">
+      <!-- CABECERA -->
+
+      <div class="cabecera-reservas">
+        <h2 class="titulo-mes">
+          {{ semana[0]?.fecha | date: "MMMM yyyy" | titlecase }}
+        </h2>
+
+        <div class="navegacion-semana">
+             <input #selectorFecha type="date" class="input-oculto" (change)="irAFecha($event)"/>
+          <button class="btn-calendario" (click)="selectorFecha.showPicker()"><i class="bi bi-calendar"></i></button>
+            <div class="controles-semana">
+
+              <button class="btn-nav" (click)="semanaAnterior()">  <i class="bi bi-caret-left-fill"></i></button>
+              <button class="btn-nav" (click)="diaActual()">HOY</button>
+              <button class="btn-nav" (click)="semanaSiguiente()">  <i class="bi bi-caret-right-fill"></i></button>
+            </div>
+              
+       
         </div>
-    </main>
-    <app-footer></app-footer>
+      </div>
+      <!-- SEMANA -->
+
+      <div class="fila-semana">
+        <div class="columna-dia col" *ngFor="let dia of semana">
+          <!-- DIA -->
+
+          <div class="cabecera-dia">
+            <h3>
+              {{ dia.fecha | date: "EEEE" | titlecase }}
+            </h3>
+
+            <div class="circulo-dia" [class.dia-actual]="esHoy(dia.fecha)">
+              {{ dia.fecha | date: "dd" }}
+            </div>
+          </div>
+
+          <!-- SLOTS -->
+
+          <div class="slots-container">
+            <button
+              class="slot-btn"
+              *ngFor="let slot of dia.slots"
+              (click)="seleccionarSlot(dia.fecha, slot)"
+            >
+              {{ slot.substring(0, 5) }}
+            </button>
+
+            <p class="sin-slots" *ngIf="dia.slots.length === 0">Sin horario</p>
+          </div>
+        </div>
+      </div>
+
+
+<div
+  class="modal-overlay"
+  *ngIf="mostrarConfirmacion">
+
+  <div class="modal-reserva">
+
+    <h3>Confirmar reserva</h3>
+
+    <p>
+      ¿Deseas reservar el día
+      <strong>{{ fechaPendiente | date: 'EEEE d MMMM' | titlecase }}</strong>
+      a las
+      <strong>{{ slotPendiente.substring(0,5) }}</strong>?
+    </p>
+
+    <div class="acciones-modal">
+
+      <button
+        class="btn-cancelar"
+        (click)="cancelarReserva()">
+        Cancelar
+      </button>
+
+      <button
+        class="btn-confirmar"
+        (click)="confirmarReserva()">
+        Confirmar
+      </button>
+    </div>
+
+  </div>
+
 </div>
+
+
+      
+<div
+  class="modal-overlay"
+  *ngIf="mostrarReservaExistente"
+>
+  <div class="modal-confirmacion">
+
+    <h3>Ya tienes una reserva activa</h3>
+    <p>
+      Para reservar una nueva cita primero
+      debes cancelar la actual.
+    </p>
+    <button
+      class="btn-confirmar"
+      (click)="irAReserva()"
+    >
+      Aceptar
+    </button>
+
+  </div>
+</div>
+      <!-- MENSAJE -->
+
+      <div class="mensaje" *ngIf="mensaje">
+        {{ mensaje }}
+      </div>
+    </div>
+  </main>
+</div>
+
+<app-footer></app-footer>

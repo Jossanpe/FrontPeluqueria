@@ -1,0 +1,113 @@
+.nav-fixed{
+
+  position:fixed;
+
+  top:100px;
+
+  left:0;
+
+  width:100%;
+
+  z-index:999;
+}
+@media(max-width:768px){
+
+  .nav-fixed{
+
+    top:160px;
+  }
+}
+
+@media(max-width:440px){
+
+  .nav-fixed{
+
+    top:170px;
+  }
+}
+
+p{
+  color:black;
+}
+
+
+.datos-reserva{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:10px;
+
+  margin-bottom:50px;
+  color:white;
+}
+
+.dia{
+
+  font-size:2rem;
+
+  font-weight:300;
+}
+
+.mes{
+
+  font-size:2rem;
+
+  font-weight:300;
+}
+
+.hora{
+
+  font-size:4rem;
+
+  font-weight:300;
+
+  margin-top:15px;
+}
+
+.btn-cancelar{
+
+  border:solid 2px white;
+
+  padding:15px 30px;
+
+  margin-bottom:40px;
+  cursor:pointer;
+  font-weight:700;
+  font-size:1rem;
+  background-color: red;
+}
+
+.reserva-card{
+  width: 100%;
+  max-width: 500px;
+  min-height:calc(100vh - 350px);
+  margin: 120px auto 0 auto;
+  padding-top:100px;
+  color:white;
+  text-align:center;
+  background-color: black;
+}
+
+/* Móvil */
+@media (max-width: 767px) {
+  .reserva-card{
+    margin: 150px auto 0 auto;
+  }
+}
+
+
+.contenido-page{
+
+  min-height:100vh;
+
+  display:flex;
+
+  flex-direction:column;
+}
+
+.main-con-nav{
+
+  flex:1;
+}

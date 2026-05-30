@@ -1,1 +1,159 @@
-<p>panelcontrol works!</p>
+<app-header></app-header>
+
+<app-nav-admin class="nav-fixed"></app-nav-admin>
+
+<main class="container-fluid g-0 main-con-nav">
+  <div class="row min-vh-100 g-0">
+    <div class="panel-control">
+      <div class="contenedor-panel">
+        <!-- COLUMNA 1 -->
+        <section class="panel-card">
+          <h2 class="titulo-panel">DISPONIBILIDAD</h2>
+
+          <form
+            [formGroup]="formularioDisponibilidad"
+            (ngSubmit)="guardarDisponibilidad()"
+            class="formulario-panel"
+          >
+            <div class="grupo-formulario">
+              <label> Semana </label>
+
+              <div class="fila-inputs">
+                <select formControlName="diaInicio">
+                  <option *ngFor="let dia of diasSemana" [value]="dia">
+                    {{ dia }}
+                  </option>
+                </select>
+
+                <span>-</span>
+
+                <select formControlName="diaFin">
+                  <option *ngFor="let dia of diasSemana" [value]="dia">
+                    {{ dia }}
+                  </option>
+                </select>
+              </div>
+              <label> Horario </label>
+
+              <div class="fila-inputs">
+                <input type="time" formControlName="horaInicio" />
+
+                <span>-</span>
+
+                <input type="time" formControlName="horaFin" />
+              </div>
+            </div>
+
+            <div class="grupo-formulario">
+              <div class="checkbox-grupo">
+                <input
+                  type="checkbox"
+                  formControlName="tieneDescanso"
+                  (change)="toggleDescanso()"
+                />
+
+                <label> Añadir Descanso </label>
+              </div>
+              <div
+                class="fila-inputs"
+                *ngIf="formularioDisponibilidad.get('tieneDescanso')?.value"
+              >
+                <input type="time" formControlName="descansoInicio" />
+                <span>-</span>
+                <input type="time" formControlName="descansoFin" />
+              </div>
+            </div>
+
+            <div class="grupo-formulario">
+              <label> Intervalo </label>
+
+              <input type="number" formControlName="duracionSlot" />
+            </div>
+            <p *ngIf="mensajeExitoDisponibilidad"
+           class="mensaje-exito">
+              {{mensajeExitoDisponibilidad}}
+            </p>
+              <p *ngIf="mensajeErrorDisponibilidad" class="mensaje-error">
+              {{ mensajeErrorDisponibilidad }}
+            </p>
+            <app-boton type="submit">GUARDAR</app-boton>
+          </form>
+        </section>
+
+        <!-- EXCEPCIONES -->
+        <section class="panel-card">
+          <h2 class="titulo-panel">EXCEPCIONES</h2>
+
+          <form
+            [formGroup]="formularioExcepcion"
+            (ngSubmit)="agregarExcepcion()"
+            class="formulario-panel"
+          >
+            <div class="grupo-formulario">
+              <label> Fecha </label>
+              <input type="date" formControlName="fecha" />
+            </div>
+
+            <div class="checkbox-grupo">
+              <input
+                type="checkbox"
+                formControlName="diaCompleto"
+                (change)="toggleHoras()"
+              />
+              <label> Día completo </label>
+            </div>
+            <!--El ngIf indica que solo aparezca este bloque si el input del diaCompleto del formularioExcepcion está activo-->
+            <div
+              class="grupo-formulario"
+              *ngIf="!formularioExcepcion.get('diaCompleto')?.value"
+            >
+              <p *ngIf="mensajeExitoExcepcion"
+           class="mensaje-exito">
+              {{mensajeExitoExcepcion}}
+            </p>
+              <label> Horario excepción </label>
+              <div class="fila-inputs">
+                <input type="time" formControlName="horaInicio" />
+                <span>-</span>
+                <input type="time" formControlName="horaFin" />
+              </div>
+            </div>
+            
+            <p *ngIf="mensajeErrorExcepcion" class="mensaje-error">
+              {{ mensajeErrorExcepcion }}
+            </p>
+            <app-boton type="submit">AÑADIR</app-boton>
+          </form>
+        </section>
+
+        <!-- COLUMNA 3 -->
+        <section class="panel-card">
+          <h2 class="titulo-panel">EXCEPCIONES ACTIVAS</h2>
+
+          <div *ngFor="let excepcion of excepciones" class="excepcion-item">
+            <span class="texto-excepcion">
+              {{ excepcion.fecha }}
+
+              <ng-container *ngIf="excepcion.diaCompleto">
+                Día completo
+              </ng-container>
+
+              <ng-container *ngIf="!excepcion.diaCompleto">
+                {{ excepcion.horaInicio.slice(0, 5) }}
+                -
+                {{ excepcion.horaFin.slice(0, 5) }}
+              </ng-container>
+            </span>
+            <button
+              class="btn-eliminar"
+              (click)="eliminarExcepcion(excepcion.idExcepcion)"
+            >
+              X
+            </button>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>
+<app-footer></app-footer>
