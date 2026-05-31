@@ -7,11 +7,12 @@ export class TenantService {
 
   obtenerTenant():string{
 
-    const host = window.location.hostname;
+    //CON DOMINIO
+    //const host = window.location.hostname;
+    //return host.split('.')[0];
 
-    return host.split('.')[0];
-    
-    //const tenant = this.route.snapshot.paramMap.get('tenant');
+    //CON VERCEL
+   return window.location.pathname.split('/')[1];
   }
 
 
