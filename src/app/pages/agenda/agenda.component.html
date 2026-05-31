@@ -1,13 +1,262 @@
 <app-header></app-header>
 
-<app-nav-admin class="nav-fixed "></app-nav-admin>
+<app-nav-admin class="nav-fixed"></app-nav-admin>
+
 <div class="contenido-page">
-<main class="container-fluid g-0 main-con-nav">
-        <div class="row min-vh-100 g-0">
-            
-            
-            
+  <main class="container-fluid g-0 main-con-nav">
+    <div class="contenedor-agenda">
+      <!-- CABECERA -->
+
+      <div class="cabecera-reservas">
+        <h2 class="titulo-mes">
+          {{ dias[0] | date: "MMMM yyyy" | titlecase }}
+        </h2>
+
+        <div class="navegacion-semana">
+          <input
+            #selectorFecha
+            type="date"
+            class="input-oculto"
+            (change)="irAFecha($event)"
+          />
+
+          <button class="btn-calendario" (click)="selectorFecha.showPicker()">
+            <i class="bi bi-calendar"></i>
+          </button>
+
+          <div class="controles-semana">
+            <button class="btn-nav" (click)="semanaAnterior()">
+              <i class="bi bi-caret-left-fill"></i>
+            </button>
+
+            <button class="btn-nav" (click)="diaActual()">HOY</button>
+
+            <button class="btn-nav" (click)="semanaSiguiente()">
+              <i class="bi bi-caret-right-fill"></i>
+            </button>
+          </div>
         </div>
-    </main>
-    <app-footer></app-footer>
+      </div>
+
+      <!-- CABECERA DIAS -->
+
+      <div class="agenda-grid">
+        <div class="columna-agenda" *ngFor="let dia of dias">
+          <div class="cabecera-dia">
+            <h3>
+              {{ dia | date: "EEEE" | titlecase }}
+            </h3>
+
+            <div class="circulo-dia" [class.dia-actual]="esHoy(dia)">
+              {{ dia | date: "dd" }}
+            </div>
+          </div>
+
+          <div
+            class="slot-agenda"
+            *ngFor="let hora of horas"
+            [class.slot-reserva]="
+              obtenerSlot(dia, hora)?.tipo === 'RESERVA_CLIENTE'
+            "
+            [class.slot-reservaAdmin]="
+              obtenerSlot(dia, hora)?.tipo === 'BLOQUE_ADMIN'
+            "
+            [class.slot-excepcion]="
+              obtenerSlot(dia, hora)?.tipo === 'EXCEPCION'
+            "
+            [class.slot-descanso]="obtenerSlot(dia, hora)?.tipo === 'DESCANSO'"
+            (click)="abrirSlot(obtenerSlot(dia, hora), $event)"
+          >
+            {{ hora }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 </div>
+<!-- CARD DETALLE RESERVA -->
+
+<div
+  class="card-reserva"
+  *ngIf="mostrarDetalle && slotSeleccionado"
+  [style.left.px]="cardX"
+  [style.top.px]="cardY"
+>
+
+  <button
+    class="btn-cerrar"
+    (click)="cerrarDetalle()">
+
+    <i class="bi bi-x-lg"></i>
+
+  </button>
+
+  <div class="cabecera-card">
+
+    <div class="avatar">
+      <i class="bi bi-person-circle"></i>
+    </div>
+
+    <div class="datos-cliente">
+
+      <h3>
+        {{ slotSeleccionado?.nombreCliente }}
+      </h3>
+
+      <p>
+        {{ slotSeleccionado?.telefonoCliente }}
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="horario-card">
+
+    <span>
+      {{ slotSeleccionado?.horaInicio?.substring(0,5) }}
+      -
+      {{ slotSeleccionado?.horaFin?.substring(0,5) }}
+    </span>
+
+  </div>
+
+  <div class="notas-card">
+
+    {{ slotSeleccionado?.descripcion || 'Sin notas' }}
+
+  </div>
+
+  <div class="acciones-card">
+
+    <button
+      class="btn-cancelar"
+      (click)="cancelarReservaAdmin()">
+
+      Cancelar cita
+
+    </button>
+
+  </div>
+
+</div>
+
+<!-- CARD CREAR RESERVA -->
+
+<div
+  class="card-reserva"
+  *ngIf="mostrarCrear && slotNuevo"
+  [style.left.px]="cardX"
+  [style.top.px]="cardY"
+>
+
+  <button
+    class="btn-cerrar"
+    (click)="cerrarCrear()">
+
+    <i class="bi bi-x-lg"></i>
+
+  </button>
+
+  <h3>Nueva reserva</h3>
+
+  <div class="horario-card">
+
+    <span>
+      {{ slotNuevo?.fecha }}
+    </span>
+
+    <span>
+      {{ slotNuevo?.horaInicio?.substring(0,5) }}
+      -
+      {{ slotNuevo?.horaFin?.substring(0,5) }}
+    </span>
+
+  </div>
+
+  <input
+    type="text"
+    class="input-buscador"
+    placeholder="Buscar cliente..."
+    [(ngModel)]="busquedaCliente"
+    (input)="buscarClientes()"
+  >
+
+<div
+  class="resultado-cliente"
+  *ngFor="let cliente of clientesFiltrados"
+  (click)="seleccionarCliente(cliente)"
+>
+
+  {{ cliente.nombre }}
+
+  -
+
+  {{ cliente.tel }}
+
+</div>
+
+<div
+  class="cliente-seleccionado"
+  *ngIf="clienteSeleccionado"
+>
+
+  Cliente seleccionado:
+
+  {{ clienteSeleccionado.nombre }}
+
+  -
+
+  {{ clienteSeleccionado.tel }}
+
+</div>
+
+
+
+  <textarea
+    class="input-notas"
+    [(ngModel)]="descripcion"
+    placeholder="Notas de la reserva"
+  ></textarea>
+
+  <div class="acciones-card">
+
+    <button
+      class="btn-confirmar"
+      (click)="crearReservaAdmin()">
+
+      Crear reserva
+
+    </button>
+
+  </div>
+
+</div>
+<div
+  class="overlay-modal"
+  *ngIf="mostrarError"
+>
+
+  <div class="modal-error">
+
+    <h3>Error</h3>
+
+    <p>
+
+      {{ mensajeError }}
+
+    </p>
+
+    <button
+      class="btn-confirmar"
+      (click)="mostrarError = false"
+    >
+
+      Aceptar
+
+    </button>
+
+  </div>
+
+</div>
+<app-footer></app-footer>

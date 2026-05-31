@@ -25,3 +25,25 @@ export interface ReservaConsultaClienteDTO {
   tipoReserva: string;
 }
 
+
+
+export interface AgendaSlotDTO {
+
+  fecha: string;
+
+  horaInicio: string;
+
+  horaFin: string;
+
+  idReserva?: number | null;
+
+  idExcepcion?: number;
+
+  nombreCliente?: string | null;
+    
+  tipo?: string;
+
+  telefonoCliente?: string;
+
+  descripcion?: string | null;
+}

@@ -3,7 +3,6 @@
 ========================= */
 
 .nav-fixed {
-
   position: fixed;
 
   top: 100px;
@@ -16,302 +15,520 @@
 }
 
 @media (max-width: 768px) {
-
   .nav-fixed {
-
     top: 160px;
   }
 }
 
 @media (max-width: 440px) {
-
   .nav-fixed {
-
     top: 170px;
   }
 }
 
-/* =========================
-   CONTENIDO GENERAL
-========================= */
-
 .main-con-nav {
-
   background: #d9d3c7;
 
-  padding-top: 220px;
+  padding-top: 180px;
 
   min-height: 100vh;
 }
 
-/* =========================
-   PANEL GENERAL
-========================= */
+.agenda-grid {
+  display: grid;
 
-.panel-control {
+  grid-template-columns: repeat(7, 1fr);
 
-  width: 100%;
-
-  padding: 60px 80px;
+  gap: 30px;
+  padding-bottom:30px;
 }
 
-/* =========================
-   CONTENEDOR COLUMNAS
-========================= */
+.fila-hora {
+  display: grid;
 
-.contenedor-panel {
-
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: flex-start;
-
-  gap: 80px;
+  grid-template-columns: 80px repeat(7, 1fr);
 }
 
-/* =========================
-   COLUMNAS
-========================= */
+.celda-hora {
+  padding: 10px;
 
-.panel-card {
-
-  flex: 1;
-
-  min-width: 0;
-}
-
-/* =========================
-   TITULOS
-========================= */
-
-.titulo-panel {
-
-  font-size: 3rem;
-
-  font-weight: 300;
-
-  letter-spacing: 1px;
-
-  margin-bottom: 50px;
-
-  color: #1d1d1d;
-}
-
-/* =========================
-   FORMULARIOS
-========================= */
-
-.formulario-panel {
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 45px;
-}
-
-/* =========================
-   GRUPOS
-========================= */
-
-.grupo-formulario {
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 15px;
-}
-
-/* =========================
-   LABELS
-========================= */
-
-.grupo-formulario label,
-.checkbox-grupo label {
-
-  font-size: 1.1rem;
-
-  font-weight: 400;
-
-  color: #1d1d1d;
-}
-
-/* =========================
-   FILAS INPUTS
-========================= */
-
-.fila-inputs {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 20px;
-}
-
-/* =========================
-   INPUTS
-========================= */
-
-input,
-select {
-
-  width: 100%;
-
-  height: 50px;
-
-  border: none;
-
-  background: #f5f5f5;
-
-  padding: 12px;
-
-  font-size: 1rem;
-
-  outline: none;
-}
-
-/* =========================
-   INPUT NUMBER
-========================= */
-
-input[type="number"] {
-
-  max-width: 180px;
-}
-
-/* =========================
-   CHECKBOX
-========================= */
-
-.checkbox-grupo {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 12px;
-}
-
-.checkbox-grupo input {
-
-  width: 18px;
-
-  height: 18px;
-}
-
-/* =========================
-   BOTON
-========================= */
-
-.boton-panel {
-
-  width: 200px;
-
-  height: 65px;
-
-  border: none;
-
-  background: #78aeb2;
-
-  color: #111;
-
-  font-size: 1rem;
+  border: 1px solid #ddd;
 
   font-weight: 600;
 
+  background: #f5f5f5;
+}
+
+.celda-slot {
+  min-height: 40px;
+
+  border: 1px solid #ddd;
+
   cursor: pointer;
+}
+.fila-semana {
+  display: grid;
 
-  transition: 0.2s;
+  grid-template-columns: repeat(7, 1fr);
+
+  gap: 10px;
+
+  margin-bottom: 20px;
 }
 
-.boton-panel:hover {
-
-  opacity: 0.9;
+.columna-dia {
+  min-width: 0;
 }
 
-/* =========================
-   LISTA EXCEPCIONES
-========================= */
-
-.lista-excepciones {
-
+.cabecera-dia {
   display: flex;
 
   flex-direction: column;
 
-  gap: 30px;
+  align-items: center;
+
+  gap: 1rem;
+
+  margin-bottom: 1rem;
+}
+.cabecera-dia h3 {
+  margin: 0;
+
+  font-size: 1.3rem;
+
+  font-weight: 600;
+
+  text-align: center;
+}
+.agenda-cabecera {
+  display: grid;
+
+  grid-template-columns:repeat(7,1fr);
+
+  gap: 15px;
+
+  margin-bottom: 15px;
 }
 
-/* =========================
-   ITEMS EXCEPCIONES
-========================= */
+.cabecera-hora {
+  min-height: 80px;
+}
 
-.item-excepcion {
+.circulo-dia {
+  width: 70px;
+
+  height: 70px;
+
+  border: 2px solid black;
+
+  border-radius: 50%;
+
+  background: white;
 
   display: flex;
 
-  justify-content: space-between;
+  justify-content: center;
 
   align-items: center;
 
-  padding-bottom: 20px;
+  font-size: 2rem;
 
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+  font-weight: bold;
+
+  color: black;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+.dia-actual {
+  background-color: #6eaeb3;
 
-@media (max-width: 1200px) {
+  color: white;
 
-  .contenedor-panel {
+  border: 3px solid #000;
 
-    flex-direction: column;
-
-    gap: 70px;
-  }
-
-  .panel-card {
-
-    width: 100%;
-  }
-
-  .panel-control {
-
-    padding: 50px 40px;
-  }
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
+.titulo-mes {
+  margin-left: 30px;
+
+  font-size: 3rem;
+
+  font-weight: bold;
+
+  text-transform: uppercase;
+}
+.btn-calendario {
+  border: none;
+
+  background: none;
+
+  font-size: 3rem;
+
+  cursor: pointer;
+}
+.btn-nav {
+  border: solid black;
+
+  background: #6eaeb3;
+
+  color: black;
+
+  width: 50px;
+
+  height: 30px;
+
+  font-size: 1rem;
+
+  transition: 0.3s;
+  margin: 2px;
+ 
+}
+
+.navegacion-semana{
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+  margin: 0 auto;
+
+}
+
+.btn-nav:hover {
+  transform: scale(1.1);
+}
+
+.btn-calendario:hover {
+  transform: scale(1.1);
+}
+
+.navegacion-semana {
+   display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+  margin: 0 auto;
+}
+.cabecera-reservas{
+   display: flex;
+  justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+
+}
 @media (max-width: 768px) {
+  .agenda-cabecera{
 
-  .main-con-nav {
+    display:flex;
 
-    padding-top: 280px;
+    flex-direction:column;
+
+    gap:2rem;
+  }
+   .agenda-grid{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:2rem;
   }
 
-  .panel-control {
+  .columna-agenda{
 
-    padding: 40px 25px;
+    width:100%;
+
+    padding:0;
   }
 
-  .titulo-panel {
+  .slot-agenda{
 
-    font-size: 2.2rem;
+    height:40px;
+
+    font-size:1rem;
   }
-
-  .fila-inputs {
-
+  .cabecera-reservas {
+    display: flex;
     flex-direction: column;
-
-    align-items: stretch;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 50px;
   }
 
-  .boton-panel {
+  .titulo-mes {
+    width: 100%;
+    text-align: center;
+  }
 
+  .navegacion-semana {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .controles-semana {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .fila-semana {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .slots-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .slot-btn {
     width: 100%;
   }
+}
+
+
+
+
+
+.columna-agenda {
+  display: flex;
+
+  flex-direction: column;
+  padding-left:5%;
+  padding-right:5%;
+  
+}
+
+.slot-agenda {
+  height: 30px;
+
+  border: 1px solid black;
+ 
+  display: flex;
+font-size:1.5rem;
+  align-items: center;
+
+  justify-content: center;
+  background-color:white;
+   transition:all .2s ease;
+  
+}
+.slot-agenda:hover{
+
+  background:#6eaeb3;
+
+  cursor:pointer;
+
+  transform:scale(1.05);
+
+  box-shadow:0 0 8px rgba(0,0,0,.25);
+}
+
+.input-oculto{
+
+  display:none;
+}
+
+.slot-reserva{
+
+  background-color: grey;
+
+  border:3px solid grey;
+}
+.slot-excepcion{
+   background-color: red;
+
+  border:3px solid red;
+}
+
+.slot-reservaAdmin{
+   background-color: blue;
+
+  border:3px solid blue;
+}
+
+.slot-descanso{
+
+  background:orange;
+
+  border:3px solid orange;
+}
+
+.card-reserva{
+
+  position:fixed;
+
+  width:320px;
+
+  background:#d9d3d3;
+
+  border:3px solid black;
+
+  padding:1rem;
+
+  z-index:5000;
+
+  box-shadow:0 4px 15px rgba(0,0,0,.25);
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:1rem;
+}
+
+.btn-cerrar{
+
+  position:absolute;
+
+  top:10px;
+
+  right:10px;
+
+  border:none;
+
+  background:none;
+
+  font-size:2rem;
+
+  cursor:pointer;
+}
+
+.cabecera-card{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:1rem;
+}
+
+.avatar{
+
+  font-size:3.5rem;
+}
+
+.datos-cliente h3{
+
+  margin:0;
+
+  font-size:1.1rem;
+
+  text-transform:uppercase;
+}
+
+.datos-cliente p{
+
+  margin:0;
+
+  font-size:1.2rem;
+}
+
+.horario-card{
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  gap:1rem;
+
+  font-size:2rem;
+}
+
+.horario-card i{
+
+  color:#d50000;
+
+  font-size:2.5rem;
+}
+
+.notas-card{
+
+  text-align:center;
+
+  min-height:40px;
+
+  font-size:.9rem;
+}
+
+.acciones-card{
+
+  display:flex;
+
+  justify-content:flex-end;
+
+  gap:1rem;
+}
+
+.btn-editar{
+
+  border:none;
+
+  background:none;
+
+  font-size:2rem;
+
+  cursor:pointer;
+}
+
+.btn-cancelar{
+
+  background:#c62828;
+
+  color:white;
+
+  border:none;
+
+  padding:.5rem 1rem;
+
+  cursor:pointer;
+}
+.overlay-modal{
+
+  position:fixed;
+
+  inset:0;
+
+  background:rgba(0,0,0,.4);
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  z-index:10000;
+}
+
+.modal-error{
+
+  width:350px;
+
+  background:white;
+
+  padding:2rem;
+
+  border-radius:12px;
+
+  text-align:center;
+
+  box-shadow:0 0 20px rgba(0,0,0,.3);
+}
+
+.modal-error h3{
+
+  margin-bottom:1rem;
+
+  color:#c62828;
 }

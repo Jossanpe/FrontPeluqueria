@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ReservaDTO, SlotsDia } from '../../../models/reserva';
 import { environment } from '../../../../environments/environment';
 import { ReservaConsultaClienteDTO } from '../../../models/reserva';
+import { AgendaSlotDTO } from '../../../models/reserva';
 
 @Injectable({
   providedIn: 'root',
@@ -42,6 +43,37 @@ cancelarReserva() {
   );
 }
 
+obtenerAgendaSemana(
+  fechaInicioSemana: string
+) {
 
+  return this.http.get<AgendaSlotDTO[]>(
+    `${this.base}/reservas/agenda?fechaInicioSemana=${fechaInicioSemana}`
+  );
+}
+
+cancelarReservaAdmin(
+  idReserva: number
+){
+  return this.http.put(
+    `${this.base}/reservas/cancelar-admin/${idReserva}`,
+    {}
+  );
+}
+
+obtenerClientes() {
+
+  return this.http.get<any[]>(
+    `${this.base}/usuarios/clientes`
+  );
+}
+
+crearReservaAdmin(dto: any){
+
+  return this.http.post(
+    `${this.base}/reservas/admin/add`,
+    dto
+  );
+}
 
 }
