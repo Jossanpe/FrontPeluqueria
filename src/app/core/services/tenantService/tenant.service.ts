@@ -10,5 +10,9 @@ export class TenantService {
     const host = window.location.hostname;
 
     return host.split('.')[0];
+    
+    //const tenant = this.route.snapshot.paramMap.get('tenant');
   }
+
+
 }
