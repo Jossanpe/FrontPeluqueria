@@ -27,7 +27,7 @@ export const routes: Routes = [
 
    { path: 'agenda', component:AgendaComponent, title:'Agenda',canActivate:[authGuard,adminGuard]},
    { path: 'clientes', component:ClientesComponent, title:'Clientes', canActivate:[authGuard,adminGuard] },
-   { path: 'panel-control', component:PanelcontrolComponent, title:'Panel Control', canActivate:[authGuard,adminGuard]},
+   { path: 'configuracion', component:PanelcontrolComponent, title:'Configuracion', canActivate:[authGuard,adminGuard]},
    { path: 'perfil-admin', component:PerfilAdminComponent, title:'Perfil Admin', canActivate:[authGuard,adminGuard]},
    
   { path: '**', redirectTo: '', pathMatch:'full' },
