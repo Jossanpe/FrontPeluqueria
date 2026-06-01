@@ -8,11 +8,10 @@ export class TenantService {
   obtenerTenant():string{
 
     //CON DOMINIO
-    //const host = window.location.hostname;
-    //return host.split('.')[0];
+    const host = window.location.hostname;
+    return host.split('.')[0];
 
-    //CON VERCEL
-   return window.location.pathname.split('/')[1];
+   
   }
 
 
