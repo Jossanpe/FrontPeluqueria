@@ -10,7 +10,6 @@ export class TenantService {
     //CON DOMINIO
   //  const host = window.location.hostname;
     //return host.split('.')[0];
-
     //con vercel
   return window.location.hostname
     .split('.')[0]
@@ -19,5 +18,3 @@ export class TenantService {
    
   }
 
-
-}
