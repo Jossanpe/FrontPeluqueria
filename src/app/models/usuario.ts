@@ -21,6 +21,6 @@ export interface Usuario {
      cp:string;
       direccion:string;
         email: string;
-        claveSeguridad:string;
+        
 }
 

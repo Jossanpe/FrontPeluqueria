@@ -27,4 +27,13 @@ Lo mejor es usar una interfaz para lo que devuelve, pero si no se puede usar any
     registro(formData: FormData): Observable<any> {
     return this.http.post<any>(`${this.base}/usuarios/add`, formData);
   }
+
+
+  obtenerClientes() {
+
+  return this.http.get<any[]>(
+    `${this.base}/usuarios/clientes`
+  );
+}
+
 }

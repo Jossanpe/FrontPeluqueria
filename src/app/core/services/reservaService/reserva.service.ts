@@ -61,12 +61,6 @@ cancelarReservaAdmin(
   );
 }
 
-obtenerClientes() {
-
-  return this.http.get<any[]>(
-    `${this.base}/usuarios/clientes`
-  );
-}
 
 crearReservaAdmin(dto: any){
 

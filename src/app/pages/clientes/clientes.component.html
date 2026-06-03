@@ -4,6 +4,73 @@
 <div class="contenido-page">
 <main class="container-fluid g-0 main-con-nav">
         <div class="row min-vh-100 g-0">
+            <div class="contenedor-clientes">
+
+  <div class="cabecera">
+
+      <div class="buscador">
+    <i class="bi bi-search"></i>
+    
+    <input
+    type="text"
+    placeholder="Buscar usuario..."
+    [(ngModel)]="terminoBusqueda"
+    (input)="filtrarUsuarios()">
+    
+</div>
+</div>
+
+  <div class="tabla-container">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Teléfono</th>
+          <th>Dirección</th>
+          <th>C.P.</th>
+          <th>Fecha Nacimiento</th>
+          <th>Email</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr *ngFor="let usuario of usuariosFiltrados">
+
+          <td>{{ usuario.nombre }}</td>
+          <td>{{ usuario.tel }}</td>
+          <td>{{ usuario.direccion || '-' }}</td>
+          <td>{{ usuario.cp || '-'}}</td>
+          <td>{{ usuario.fechanacimiento || '-'}}</td>
+          <td>{{ usuario.email }}</td>
+
+          <td>
+
+            <button
+              class="bi bi-pencil-square"
+              (click)="editar(usuario)">
+            </button>
+
+            <button
+              class="bi bi-trash"
+              (click)="eliminar(usuario)">
+            
+            </button>
+
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
             
             
             

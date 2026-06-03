@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AgendaSlotDTO } from '../../models/reserva';
 import { FormsModule } from '@angular/forms';
+import { UsuariosService } from '../../core/services/usuariosService/usuarios.service';
 
 import { ReservaService } from '../../core/services/reservaService/reserva.service';
 
@@ -29,7 +30,7 @@ export class AgendaComponent implements OnInit {
     this.cargarClientes();
     
   }
-  constructor(private reservaService: ReservaService) {}
+  constructor(private reservaService: ReservaService, private usuariosService:UsuariosService) {}
 
   agenda: AgendaSlotDTO[] = [];
   slotNuevo: AgendaSlotDTO | null = null;
@@ -262,7 +263,7 @@ cerrarCrear() {
 }
 
 cargarClientes(){
-  this.reservaService
+  this.usuariosService
     .obtenerClientes()
     .subscribe({
 
