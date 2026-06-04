@@ -26,6 +26,7 @@
 
       <thead>
         <tr>
+          <th>Cliente</th>
           <th>Nombre</th>
           <th>Teléfono</th>
           <th>Dirección</th>
@@ -40,6 +41,7 @@
 
         <tr *ngFor="let usuario of usuariosFiltrados">
 
+          <td class="avatar" >  <i class="bi bi-person-circle"></i> </td>
           <td>{{ usuario.nombre }}</td>
           <td>{{ usuario.tel }}</td>
           <td>{{ usuario.direccion || '-' }}</td>

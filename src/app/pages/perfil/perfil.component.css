@@ -1,27 +1,210 @@
-.nav-fixed{
+/* =========================
+   NAV FIJO
+========================= */
 
-  position:fixed;
+.nav-fixed {
 
-  top:100px;
+  position: fixed;
 
-  left:0;
+  top: 100px;
 
-  width:100%;
+  left: 0;
 
-  z-index:999;
+  width: 100%;
+
+  z-index: 999;
 }
-@media(max-width:768px){
 
-  .nav-fixed{
+@media (max-width: 768px) {
 
-    top:160px;
+  .nav-fixed {
+
+    top: 160px;
+  }
+  
+.main-con-nav {
+  margin-top:70px;
+}
+}
+
+@media (max-width: 440px) {
+
+  .nav-fixed {
+
+    top: 170px;
+  }
+  
+.main-con-nav {
+  padding-top:250px;
+}
+}
+
+/* =========================
+   CONTENIDO GENERAL
+========================= */
+
+.main-con-nav {
+
+  background: #d9d3c7;
+
+  padding-top: 150px;
+
+  min-height: 100vh;
+}
+
+
+.perfil-container {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 80px;
+
+  padding: 40px;
+
+  background: #000;
+
+  color: white;
+
+  min-height: 100vh;
+}
+
+.perfil-formulario {
+
+  flex: 2;
+}
+
+.fila {
+
+  display: flex;
+
+  gap: 40px;
+
+  margin-bottom: 40px;
+}
+
+.campo {
+
+  flex: 1;
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+.campo label {
+
+  margin-bottom: 10px;
+
+  font-size: 18px;
+}
+
+.campo input {
+
+  padding: 12px;
+
+  border: none;
+
+  background: white;
+}
+
+.perfil-foto {
+
+  flex: 1;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: flex-start;
+
+  gap: 20px;
+}
+
+.avatar {
+
+  font-size: 220px;
+
+  margin: 30px 0;
+}
+
+.btn-subir,
+.btn-perfil {
+
+  background: #79b3b5;
+
+  border: none;
+
+  padding: 15px 30px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+}
+  .btn-subir {
+
+  margin-top: 20px;
+}
+
+.botones {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-top: 80px;
+}
+
+@media (max-width: 992px) {
+
+  .perfil-container {
+
+    flex-direction: column;
+  }
+
+  .fila {
+
+    flex-direction: column;
+  }
+
+  .botones {
+
+    flex-direction: column;
+
+    gap: 20px;
   }
 }
 
-@media(max-width:440px){
+input[readonly] {
+  background-color: grey;
+  cursor: not-allowed;
+}
+.avatar {
 
-  .nav-fixed{
+  width: 220px;
+  height: 220px;
 
-    top:170px;
-  }
+  border-radius: 50%;
+
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar img {
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.avatar i {
+
+  font-size: 220px;
 }

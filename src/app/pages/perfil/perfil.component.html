@@ -1,13 +1,78 @@
 <app-header></app-header>
-
-<app-nav-cliente class="nav-fixed "></app-nav-cliente>
+<app-nav-cliente class="nav-fixed"></app-nav-cliente>
 <div class="contenido-page">
-<main class="container-fluid g-0 main-con-nav">
-        <div class="row min-vh-100 g-0">
-            
-            
-            
+  <main class="container-fluid g-0 main-con-nav">
+    <div class="row min-vh-100 g-0">
+      <div class="perfil-container">
+        <div class="perfil-formulario">
+          <div class="fila">
+            <div class="campo">
+              <label>Nombre y apellidos</label>
+              <input type="text" [(ngModel)]="usuario.nombre" readonly />
+            </div>
+
+            <div class="campo">
+              <label>Fecha nacimiento</label>
+              <input type="date" [(ngModel)]="usuario.fechanacimiento" />
+            </div>
+          </div>
+
+          <div class="fila">
+            <div class="campo">
+              <label>Teléfono</label>
+              <input type="text" [(ngModel)]="usuario.tel" readonly />
+            </div>
+
+            <div class="campo">
+              <label>Código Postal</label>
+              <input type="text" [(ngModel)]="usuario.cp" />
+            </div>
+          </div>
+
+          <div class="fila">
+            <div class="campo">
+              <label>Correo electrónico</label>
+              <input type="email" [(ngModel)]="usuario.email" readonly />
+            </div>
+
+            <div class="campo">
+              <label>Dirección</label>
+              <input type="text" [(ngModel)]="usuario.direccion" />
+            </div>
+          </div>
+
+          <div class="botones">
+            <button class="btn-perfil" (click)="cambiarPassword()">
+              Cambiar contraseña
+            </button>
+
+            <button class="btn-perfil" (click)="guardar()">Guardar</button>
+          </div>
         </div>
-    </main>
-    <app-footer></app-footer>
+
+        <div class="perfil-foto">
+          <h2>Editar Perfil</h2>
+
+          <div class="avatar">
+            <img *ngIf="previewFoto" [src]="previewFoto" alt="Foto perfil" />
+
+            <i *ngIf="!previewFoto" class="bi bi-person-circle"> </i>
+          </div>
+
+          <button class="btn-subir" (click)="fileInput.click()">
+            Subir foto
+          </button>
+
+          <input
+            type="file"
+            #fileInput
+            hidden
+            accept="image/*"
+            (change)="seleccionarFoto($event)"
+          />
+        </div>
+      </div>
+    </div>
+  </main>
+  <app-footer></app-footer>
 </div>

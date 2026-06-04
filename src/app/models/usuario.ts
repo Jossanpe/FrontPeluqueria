@@ -21,6 +21,7 @@ export interface Usuario {
      cp:string;
       direccion:string;
         email: string;
+        rutafoto?:string;
         
 }
 

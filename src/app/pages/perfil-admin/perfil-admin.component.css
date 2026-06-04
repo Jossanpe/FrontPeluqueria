@@ -21,6 +21,10 @@
 
     top: 160px;
   }
+  
+.main-con-nav {
+  margin-top:70px;
+}
 }
 
 @media (max-width: 440px) {
@@ -29,6 +33,10 @@
 
     top: 170px;
   }
+  
+.main-con-nav {
+  padding-top:250px;
+}
 }
 
 /* =========================
@@ -39,279 +47,130 @@
 
   background: #d9d3c7;
 
-  padding-top: 220px;
+  padding-top: 150px;
 
   min-height: 100vh;
 }
 
-/* =========================
-   PANEL GENERAL
-========================= */
 
-.panel-control {
-
-  width: 100%;
-
-  padding: 60px 80px;
-}
-
-/* =========================
-   CONTENEDOR COLUMNAS
-========================= */
-
-.contenedor-panel {
+.perfil-container {
 
   display: flex;
 
   justify-content: space-between;
 
-  align-items: flex-start;
-
   gap: 80px;
+
+  padding: 40px;
+
+  background: #000;
+
+  color: white;
+
+  min-height: 100vh;
 }
 
-/* =========================
-   COLUMNAS
-========================= */
+.perfil-formulario {
 
-.panel-card {
+  flex: 2;
+}
+
+.fila {
+
+  display: flex;
+
+  gap: 40px;
+
+  margin-bottom: 40px;
+}
+
+.campo {
 
   flex: 1;
 
-  min-width: 0;
-}
-
-/* =========================
-   TITULOS
-========================= */
-
-.titulo-panel {
-
-  font-size: 3rem;
-
-  font-weight: 300;
-
-  letter-spacing: 1px;
-
-  margin-bottom: 50px;
-
-  color: #1d1d1d;
-}
-
-/* =========================
-   FORMULARIOS
-========================= */
-
-.formulario-panel {
-
   display: flex;
 
   flex-direction: column;
-
-  gap: 45px;
 }
 
-/* =========================
-   GRUPOS
-========================= */
+.campo label {
 
-.grupo-formulario {
+  margin-bottom: 10px;
 
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 15px;
+  font-size: 18px;
 }
 
-/* =========================
-   LABELS
-========================= */
-
-.grupo-formulario label,
-.checkbox-grupo label {
-
-  font-size: 1.1rem;
-
-  font-weight: 400;
-
-  color: #1d1d1d;
-}
-
-/* =========================
-   FILAS INPUTS
-========================= */
-
-.fila-inputs {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 20px;
-}
-
-/* =========================
-   INPUTS
-========================= */
-
-input,
-select {
-
-  width: 100%;
-
-  height: 50px;
-
-  border: none;
-
-  background: #f5f5f5;
+.campo input {
 
   padding: 12px;
 
-  font-size: 1rem;
-
-  outline: none;
-}
-
-/* =========================
-   INPUT NUMBER
-========================= */
-
-input[type="number"] {
-
-  max-width: 180px;
-}
-
-/* =========================
-   CHECKBOX
-========================= */
-
-.checkbox-grupo {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 12px;
-}
-
-.checkbox-grupo input {
-
-  width: 18px;
-
-  height: 18px;
-}
-
-/* =========================
-   BOTON
-========================= */
-
-.boton-panel {
-
-  width: 200px;
-
-  height: 65px;
-
   border: none;
 
-  background: #78aeb2;
-
-  color: #111;
-
-  font-size: 1rem;
-
-  font-weight: 600;
-
-  cursor: pointer;
-
-  transition: 0.2s;
+  background: white;
 }
 
-.boton-panel:hover {
+.perfil-foto {
 
-  opacity: 0.9;
-}
-
-/* =========================
-   LISTA EXCEPCIONES
-========================= */
-
-.lista-excepciones {
+  flex: 1;
 
   display: flex;
 
   flex-direction: column;
 
-  gap: 30px;
+  align-items: center;
 }
 
-/* =========================
-   ITEMS EXCEPCIONES
-========================= */
+.avatar {
 
-.item-excepcion {
+  font-size: 220px;
+
+  margin: 30px 0;
+}
+
+.btn-subir,
+.btn-perfil {
+
+  background: #79b3b5;
+
+  border: none;
+
+  padding: 15px 30px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.botones {
 
   display: flex;
 
   justify-content: space-between;
 
-  align-items: center;
-
-  padding-bottom: 20px;
-
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+  margin-top: 80px;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+@media (max-width: 992px) {
 
-@media (max-width: 1200px) {
+  .perfil-container {
 
-  .contenedor-panel {
+    flex-direction: column;
+  }
+
+  .fila {
+
+    flex-direction: column;
+  }
+
+  .botones {
 
     flex-direction: column;
 
-    gap: 70px;
-  }
-
-  .panel-card {
-
-    width: 100%;
-  }
-
-  .panel-control {
-
-    padding: 50px 40px;
+    gap: 20px;
   }
 }
 
-@media (max-width: 768px) {
-
-  .main-con-nav {
-
-    padding-top: 280px;
-  }
-
-  .panel-control {
-
-    padding: 40px 25px;
-  }
-
-  .titulo-panel {
-
-    font-size: 2.2rem;
-  }
-
-  .fila-inputs {
-
-    flex-direction: column;
-
-    align-items: stretch;
-  }
-
-  .boton-panel {
-
-    width: 100%;
-  }
+input[readonly] {
+  background-color: grey;
+  cursor: not-allowed;
 }
